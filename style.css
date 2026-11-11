@@ -773,6 +773,43 @@ body.menu-open .nav-toggle span:last-child {
   background-size: cover;
 }
 
+.project-example {
+  background-color: var(--example-dark);
+  background-image:
+    radial-gradient(ellipse at 68% 29%, transparent 0 18%, rgb(255 255 255 / 18%) 18.4% 18.8%, transparent 19.2%),
+    linear-gradient(var(--example-angle), var(--example-dark) 15%, var(--example-light));
+}
+
+.project-example--outdoor {
+  --example-dark: #2c153e;
+  --example-light: #95699b;
+  --example-angle: 145deg;
+}
+
+.project-example--digital {
+  --example-dark: #11283c;
+  --example-light: #3e7788;
+  --example-angle: 35deg;
+}
+
+.project-example--activation {
+  --example-dark: #4a211c;
+  --example-light: #ae563d;
+  --example-angle: 155deg;
+}
+
+.project-example--fabrication {
+  --example-dark: #1f302e;
+  --example-light: #577d65;
+  --example-angle: 25deg;
+}
+
+.project-example--commerce {
+  --example-dark: #39223a;
+  --example-light: #986170;
+  --example-angle: 115deg;
+}
+
 .project-hero::before {
   content: "";
   position: absolute;
