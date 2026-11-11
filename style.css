@@ -488,7 +488,10 @@ body.menu-open .nav-toggle span:last-child {
 
 .clients-set {
   display: flex;
+  flex: none;
   align-items: center;
+  justify-content: space-around;
+  min-width: 100vw;
 }
 
 .clients-set span {
@@ -2141,6 +2144,29 @@ section[id] {
   .marquee-track,
   .sayhi-ring {
     animation: none;
+  }
+
+  .clients-marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .clients-track {
+    width: 100%;
+  }
+
+  .clients-set {
+    min-width: 0;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 18px;
+    padding-inline: var(--pad);
+  }
+
+  .clients-set span::after,
+  .clients-set[aria-hidden="true"] {
+    display: none;
   }
 
   .carousel-track {
