@@ -303,14 +303,15 @@ if (carousel) {
     offset = Math.min(Math.max(value, 0), maxOffset);
 
     if (!animate) {
-      track.style.transition = 'none';
+      carousel.style.setProperty('--carousel-transition', 'none');
     }
 
     track.style.transform = `translate3d(-${offset}px, 0, 0)`;
+    carousel.style.setProperty('--orb-angle', `${step > 0 ? (offset / step) * 45 : 0}deg`);
 
     if (!animate) {
       requestAnimationFrame(() => {
-        track.style.transition = '';
+        carousel.style.removeProperty('--carousel-transition');
       });
     }
   };
@@ -390,7 +391,7 @@ if (carousel) {
       startOffset: offset,
       moved: false,
     };
-    track.classList.add('is-dragging');
+    carousel.classList.add('is-dragging');
   });
 
   window.addEventListener('pointermove', (event) => {
@@ -416,7 +417,7 @@ if (carousel) {
 
     const wasMoved = drag.moved;
     drag = null;
-    track.classList.remove('is-dragging');
+    carousel.classList.remove('is-dragging');
 
     if (wasMoved) {
       const { step } = measure();

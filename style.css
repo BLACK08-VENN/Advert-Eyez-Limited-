@@ -1021,12 +1021,12 @@ body.menu-open .nav-toggle span:last-child {
 .carousel-track {
   display: flex;
   gap: var(--gap);
-  transition: transform 0.8s var(--ease);
+  transition: var(--carousel-transition, transform 0.8s var(--ease));
   will-change: transform;
 }
 
-.carousel-track.is-dragging {
-  transition: none;
+.services-carousel.is-dragging {
+  --carousel-transition: none;
 }
 
 .service-slide {
@@ -1192,11 +1192,44 @@ body.menu-open .nav-toggle span:last-child {
 }
 
 .carousel-controls {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
   gap: 16px;
   margin-top: 22px;
+}
+
+.carousel-orb {
+  position: relative;
+  width: clamp(146px, 17vw, 236px);
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.carousel-orb-wheel {
+  position: absolute;
+  inset: 0 0 auto;
+  aspect-ratio: 1;
+  border: 1px solid #b78d85;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, transparent 57%, rgb(255 227 210 / 52%) 57.5% 58.2%, transparent 58.7%),
+    repeating-conic-gradient(from -1deg, rgb(255 227 210 / 62%) 0deg 1deg, transparent 1deg 15deg),
+    conic-gradient(from 15deg, #c56f4c, #5a326c, #1c122a, #8d4976, #c56f4c);
+  transform: rotate(var(--orb-angle, 0deg));
+  transition: var(--carousel-transition, transform 0.8s var(--ease));
+}
+
+.carousel-orb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 34% 28%, rgb(255 221 199 / 42%), transparent 46%),
+    linear-gradient(180deg, transparent 25%, rgb(20 12 28 / 78%));
 }
 
 .carousel-hint {
@@ -1206,6 +1239,7 @@ body.menu-open .nav-toggle span:last-child {
 
 .carousel-buttons {
   display: flex;
+  justify-self: end;
   gap: 8px;
 }
 
@@ -2018,7 +2052,13 @@ section[id] {
   }
 
   .carousel-controls {
-    justify-content: flex-end;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .carousel-orb {
+    width: clamp(90px, 29vw, 160px);
   }
 
   .cap summary {
@@ -2171,6 +2211,10 @@ section[id] {
 
   .carousel-track {
     transition: none;
+  }
+
+  .carousel-orb-wheel {
+    transform: none;
   }
 
   .carousel-pause {
