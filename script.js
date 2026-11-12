@@ -240,7 +240,7 @@ if ('IntersectionObserver' in window && revealItems.length) {
 }
 
 const sayhi = document.querySelector('.sayhi');
-const restTriggers = [document.querySelector('#contact'), document.querySelector('.site-footer')].filter(Boolean);
+const restTriggers = Array.from(document.querySelectorAll('#services, #contact, .site-footer'));
 
 if (sayhi && restTriggers.length && 'IntersectionObserver' in window) {
   const resting = new Set();
@@ -281,10 +281,25 @@ if (serviceShowcase) {
 
   const spin = steps => wheel.style.setProperty('--wheel-angle', `${steps * degreesPerService}deg`);
 
+  let sampleIndex = 0;
+
+  const sampleCenter = (track, card) => card.offsetLeft + card.offsetWidth / 2 - track.clientWidth / 2;
+
   const syncSampleButtons = () => {
     const track = tracks[activeIndex];
-    prevSample.disabled = track.scrollLeft < 2;
-    nextSample.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    const cards = Array.from(track.children);
+    sampleIndex = cards.reduce((nearest, card, index) =>
+      Math.abs(sampleCenter(track, card) - track.scrollLeft) <
+      Math.abs(sampleCenter(track, cards[nearest]) - track.scrollLeft) ? index : nearest, 0);
+    cards.forEach((card, index) => card.classList.toggle('is-featured', index === sampleIndex));
+    prevSample.disabled = sampleIndex === 0;
+    nextSample.disabled = sampleIndex === cards.length - 1;
+  };
+
+  const centerInitialSample = () => {
+    const track = tracks[activeIndex];
+    track.scrollLeft = sampleCenter(track, track.children[1] ?? track.firstElementChild);
+    syncSampleButtons();
   };
 
   const selectService = steps => {
@@ -298,7 +313,7 @@ if (serviceShowcase) {
     activeIndex = nextIndex;
     const panel = panels[activeIndex];
     panel.hidden = false;
-    tracks[activeIndex].scrollLeft = 0;
+    centerInitialSample();
 
     const name = panel.dataset.serviceName;
     label.textContent = name;
@@ -306,7 +321,6 @@ if (serviceShowcase) {
     wheel.setAttribute('aria-valuenow', activeIndex + 1);
     wheel.setAttribute('aria-valuetext', name);
     status.textContent = `${name}. ${tracks[activeIndex].children.length} sample projects.`;
-    syncSampleButtons();
 
     if (!reduceMotion.matches && panel.animate) {
       const direction = Math.sign(selection - previousSelection);
@@ -319,16 +333,17 @@ if (serviceShowcase) {
 
   const scrollSamples = direction => {
     const track = tracks[activeIndex];
-    const [first, second] = track.children;
-    const distance = second.offsetLeft - first.offsetLeft;
-    track.scrollBy({ left: direction * distance, behavior: reduceMotion.matches ? 'instant' : 'smooth' });
+    const card = track.children[sampleIndex + direction];
+    if (card) {
+      track.scrollTo({ left: sampleCenter(track, card), behavior: reduceMotion.matches ? 'instant' : 'smooth' });
+    }
   };
 
   prevSample.addEventListener('click', () => scrollSamples(-1));
   nextSample.addEventListener('click', () => scrollSamples(1));
   tracks.forEach(track => track.addEventListener('scroll', syncSampleButtons, { passive: true }));
   window.addEventListener('resize', syncSampleButtons);
-  syncSampleButtons();
+  centerInitialSample();
 
   serviceShowcase.querySelector('[data-service-prev]').addEventListener('click', () => selectService(selection - 1));
   serviceShowcase.querySelector('[data-service-next]').addEventListener('click', () => selectService(selection + 1));
