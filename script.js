@@ -269,6 +269,7 @@ if (serviceShowcase) {
   const tracks = panels.map(panel => panel.querySelector('[data-service-track]'));
   const wheel = serviceShowcase.querySelector('[data-service-wheel]');
   const label = serviceShowcase.querySelector('[data-service-label]');
+  const position = serviceShowcase.querySelector('[data-service-position]');
   const status = serviceShowcase.querySelector('[data-service-status]');
   const prevSample = serviceShowcase.querySelector('[data-sample-prev]');
   const nextSample = serviceShowcase.querySelector('[data-sample-next]');
@@ -301,6 +302,7 @@ if (serviceShowcase) {
 
     const name = panel.dataset.serviceName;
     label.textContent = name;
+    position.textContent = String(activeIndex + 1).padStart(2, '0') + ' / ' + String(panels.length).padStart(2, '0');
     wheel.setAttribute('aria-valuenow', activeIndex + 1);
     wheel.setAttribute('aria-valuetext', name);
     status.textContent = `${name}. ${tracks[activeIndex].children.length} sample projects.`;

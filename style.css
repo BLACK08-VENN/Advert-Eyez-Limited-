@@ -1004,24 +1004,25 @@ body.menu-open .nav-toggle span:last-child {
 }
 
 .services {
+  --service-ink: #f1f0ed;
+  --service-muted: #bcbcc5;
+  --service-line: #393a46;
+  --service-accent: #ff9c6b;
   overflow: hidden;
-  color: var(--white);
-  background:
-    radial-gradient(ellipse at 50% 92%, #41284b 0%, transparent 42%),
-    radial-gradient(ellipse at 92% 0%, #472639 0%, transparent 45%),
-    #17111f;
+  color: var(--service-ink);
+  background: #171821;
 }
 
 .services .services-lead,
 .services-head .lab {
-  color: #e0ccd8;
+  color: var(--service-muted);
 }
 
 .services-lead .textlink {
   display: block;
   width: fit-content;
   margin-top: 10px;
-  color: var(--white);
+  color: var(--service-ink);
 }
 
 .service-sample-heading {
@@ -1029,13 +1030,15 @@ body.menu-open .nav-toggle span:last-child {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgb(251 227 240 / 20%);
+  padding: 10px 0 10px 14px;
+  border-block: 1px solid var(--service-line);
+  border-left: 3px solid var(--service-accent);
 }
 
 .service-sample-heading > p,
-.service-wheel-hint {
-  color: #e0ccd8;
+.service-wheel-hint,
+.service-wheel-position {
+  color: var(--service-muted);
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1048,78 +1051,83 @@ body.menu-open .nav-toggle span:last-child {
 
 .service-sample-description {
   margin: 14px 0 20px;
-  color: #e0ccd8;
+  color: var(--service-muted);
   font-size: var(--t-small);
 }
 
 .service-sample-track {
   position: relative;
   display: flex;
-  gap: clamp(12px, 2vw, 22px);
+  gap: clamp(12px, 1.6vw, 20px);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
 }
 
 .service-sample-card {
-  position: relative;
-  isolation: isolate;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
   flex: 0 0 clamp(235px, 37%, 540px);
   min-width: 0;
-  min-height: clamp(205px, 22vw, 335px);
-  padding: clamp(17px, 2vw, 28px);
   overflow: hidden;
-  border: 1px solid rgb(250 223 235 / 25%);
-  border-radius: 20px;
-  background: #302338;
+  border: 1px solid var(--service-line);
+  border-radius: 4px;
+  background: #22242f;
   scroll-snap-align: start;
 }
 
-.service-sample-card img,
-.service-sample-card::after {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .service-sample-card img {
+  width: 100%;
+  height: clamp(155px, 16vw, 240px);
   object-fit: cover;
-  filter: brightness(0.83) saturate(0.86);
-}
-
-.service-sample-card::after {
-  content: "";
-  background: linear-gradient(180deg, transparent 15%, rgb(20 12 29 / 87%) 100%);
 }
 
 .service-sample-card h3 {
   display: flex;
-  align-items: flex-end;
+  flex: 1;
+  align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-  color: #fff8fb;
-  font-size: clamp(19px, 2vw, 31px);
+  gap: 12px;
+  min-height: 62px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--service-line);
+  color: var(--service-ink);
+  font-size: clamp(16px, 1.35vw, 22px);
   font-weight: 500;
-  line-height: 1.12;
+  line-height: 1.2;
+}
+
+.service-sample-card:hover {
+  border-color: var(--service-accent);
+}
+
+.service-sample-card h3 span,
+.service-wheel-button span {
+  display: block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.service-sample-card h3 span {
+  color: var(--service-accent);
 }
 
 .service-sample-card:focus-visible {
-  outline: 2px solid #f5b99f;
-  outline-offset: -5px;
+  outline: 2px solid var(--service-accent);
+  outline-offset: -4px;
 }
 
 .service-wheel-controls {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: clamp(8px, 3vw, 24px);
-  width: min(100%, 565px);
-  margin: 25px auto 0;
+  align-items: end;
+  gap: clamp(8px, 2vw, 18px);
+  width: min(100%, 505px);
+  margin: 26px auto 0;
 }
 
 .service-wheel-button {
@@ -1128,21 +1136,34 @@ body.menu-open .nav-toggle span:last-child {
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid rgb(251 227 240 / 44%);
-  border-radius: 50%;
-  color: #fff8fb;
-  background: rgb(251 227 240 / 7%);
-  font-size: 21px;
+  border: 1px solid #666575;
+  border-radius: 4px;
+  color: var(--service-ink);
+  background: #252632;
   cursor: pointer;
 }
 
+.service-wheel-button[data-sample-prev] span,
+.service-wheel-button[data-service-prev] span {
+  transform: rotate(-135deg);
+}
+
 .service-wheel-button:disabled {
-  opacity: 0.35;
+  color: #8c8d9b;
+  border-color: var(--service-line);
   cursor: default;
 }
 
 .service-wheel-button:hover:not(:disabled) {
-  background: #734765;
+  color: #181820;
+  border-color: var(--service-accent);
+  background: var(--service-accent);
+}
+
+.service-wheel-button:focus-visible,
+.service-wheel:focus-visible {
+  outline: 2px solid var(--service-accent);
+  outline-offset: 3px;
 }
 
 .service-wheel {
@@ -1151,16 +1172,11 @@ body.menu-open .nav-toggle span:last-child {
   overflow: hidden;
   aspect-ratio: 2 / 1;
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  border-bottom: 2px solid #cf8f8d;
-  background: #26182f;
+  border-bottom: 2px solid var(--service-accent);
+  background: #22232e;
   cursor: grab;
   touch-action: pan-y;
   user-select: none;
-}
-
-.service-wheel:focus-visible {
-  outline: 2px solid #f5b99f;
-  outline-offset: 4px;
 }
 
 .service-wheel.is-spinning {
@@ -1171,12 +1187,12 @@ body.menu-open .nav-toggle span:last-child {
   position: absolute;
   inset: 0 0 auto;
   aspect-ratio: 1;
-  border: 2px solid #c8999e;
+  border: 2px solid #777786;
   border-radius: 50%;
   background:
-    radial-gradient(circle, transparent 43%, rgb(255 216 212 / 24%) 44%, transparent 45%, transparent 65%, rgb(255 218 211 / 45%) 66%, transparent 67%),
-    repeating-conic-gradient(from -1deg, rgb(255 220 218 / 42%) 0deg 2deg, transparent 2deg 45deg),
-    conic-gradient(from 18deg, #d09183, #895070, #332342, #5b457f, #ad6f82, #d09183);
+    radial-gradient(circle, #20212c 0 51%, transparent 51.5%, transparent 80%, #20212c 80.5%),
+    repeating-conic-gradient(from -22.5deg, #676877 0deg 1deg, transparent 1deg 45deg),
+    conic-gradient(from -22.5deg, #754b3e 0deg 45deg, #363744 45deg 90deg, #252632 90deg 135deg, #363744 135deg 180deg, #252632 180deg 225deg, #363744 225deg 270deg, #252632 270deg 315deg, #363744 315deg);
   transform: rotate(var(--wheel-angle, 0deg));
   transition: transform 0.45s var(--ease);
 }
@@ -1185,44 +1201,46 @@ body.menu-open .nav-toggle span:last-child {
   transition: none;
 }
 
-.service-wheel::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 12%, rgb(255 211 220 / 26%), transparent 52%),
-    linear-gradient(180deg, transparent 12%, rgb(24 12 32 / 90%));
-  pointer-events: none;
-}
-
 .service-wheel::before {
   content: "";
   position: absolute;
   z-index: 1;
-  top: 8px;
+  top: 3px;
   left: 50%;
-  width: 3px;
-  height: clamp(8px, 2vw, 18px);
-  border-radius: 4px;
-  background: #ffe2c9;
-  box-shadow: 0 0 12px #ffcaa7;
+  width: 16px;
+  height: clamp(9px, 2vw, 15px);
+  background: var(--service-accent);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform: translateX(-50%);
   pointer-events: none;
 }
 
-.service-wheel-label {
+.service-wheel-readout {
   position: absolute;
   z-index: 2;
-  right: 8%;
-  bottom: 14%;
-  left: 8%;
-  color: #fff8fb;
-  font-size: clamp(13px, 2vw, 26px);
+  right: 12%;
+  bottom: 8%;
+  left: 12%;
+  display: grid;
+  gap: 5px;
+  padding: 7px 5px;
+  border: 1px solid var(--service-line);
+  background: #171821;
+  text-align: center;
+  pointer-events: none;
+}
+
+.service-wheel-position {
+  color: var(--service-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.service-wheel-label {
+  color: var(--service-ink);
+  font-size: clamp(13px, 1.6vw, 23px);
   font-weight: 500;
   line-height: 1.1;
-  text-align: center;
   text-wrap: balance;
-  pointer-events: none;
 }
 
 .service-wheel-hint {
@@ -1242,11 +1260,13 @@ body.menu-open .nav-toggle span:last-child {
 @media (max-width: 650px) {
   .service-sample-card {
     flex-basis: 84%;
-    min-height: 220px;
   }
 
-  .service-wheel-label {
-    bottom: 10%;
+  .service-wheel-readout {
+    right: 7%;
+    left: 7%;
+    gap: 3px;
+    padding: 4px 3px;
   }
 }
 
@@ -1255,7 +1275,6 @@ body.menu-open .nav-toggle span:last-child {
     transition: none;
   }
 }
-
 
 /* --------------------------------------------------------------------------
    Practice
