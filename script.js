@@ -262,283 +262,112 @@ if (sayhi && restTriggers.length && 'IntersectionObserver' in window) {
   restTriggers.forEach((element) => restObserver.observe(element));
 }
 
-const carousel = document.querySelector('[data-carousel]');
+const serviceShowcase = document.querySelector('[data-service-showcase]');
 
-if (carousel) {
-  const viewport = carousel.querySelector('.carousel-viewport');
-  const track = carousel.querySelector('.carousel-track');
-  const slides = Array.from(track.querySelectorAll('.service-slide'));
-  const prevBtn = carousel.querySelector('[data-carousel-prev]');
-  const nextBtn = carousel.querySelector('[data-carousel-next]');
-  const pauseBtn = carousel.querySelector('[data-carousel-pause]');
+if (serviceShowcase) {
+  const panels = Array.from(serviceShowcase.querySelectorAll('[data-service-panel]'));
+  const tracks = panels.map(panel => panel.querySelector('[data-service-track]'));
+  const wheel = serviceShowcase.querySelector('[data-service-wheel]');
+  const label = serviceShowcase.querySelector('[data-service-label]');
+  const status = serviceShowcase.querySelector('[data-service-status]');
+  const prevSample = serviceShowcase.querySelector('[data-sample-prev]');
+  const nextSample = serviceShowcase.querySelector('[data-sample-next]');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const degreesPerService = 360 / panels.length;
+  let selection = 0;
+  let activeIndex = 0;
+  let drag;
 
-  let index = 0;
-  let maxIndex = 0;
-  let offset = 0;
-  let timer = null;
-  let paused = false;
-  let hovering = false;
-  let focusWithin = false;
-  let inView = false;
+  const spin = steps => wheel.style.setProperty('--wheel-angle', `${steps * degreesPerService}deg`);
 
-  const measure = () => {
-    if (slides.length < 2) {
-      return { step: 0, maxOffset: 0 };
-    }
-
-    const first = slides[0].getBoundingClientRect();
-    const second = slides[1].getBoundingClientRect();
-    const last = slides[slides.length - 1].getBoundingClientRect();
-    const step = second.left - first.left;
-    const contentWidth = last.right - first.left;
-    const maxOffset = Math.max(0, contentWidth - viewport.clientWidth);
-
-    return { step, maxOffset };
+  const syncSampleButtons = () => {
+    const track = tracks[activeIndex];
+    prevSample.disabled = track.scrollLeft < 2;
+    nextSample.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
   };
 
-  const applyOffset = (value, animate = true) => {
-    const { step, maxOffset } = measure();
-    maxIndex = step > 0 ? Math.ceil(maxOffset / step) : 0;
-    offset = Math.min(Math.max(value, 0), maxOffset);
+  const selectService = steps => {
+    const previousSelection = selection;
+    selection = steps;
+    spin(selection);
+    const nextIndex = ((selection % panels.length) + panels.length) % panels.length;
+    if (nextIndex === activeIndex) return;
 
-    if (!animate) {
-      carousel.style.setProperty('--carousel-transition', 'none');
-    }
+    panels[activeIndex].hidden = true;
+    activeIndex = nextIndex;
+    const panel = panels[activeIndex];
+    panel.hidden = false;
+    tracks[activeIndex].scrollLeft = 0;
 
-    track.style.transform = `translate3d(-${offset}px, 0, 0)`;
-    carousel.style.setProperty('--orb-angle', `${step > 0 ? (offset / step) * 45 : 0}deg`);
+    const name = panel.dataset.serviceName;
+    label.textContent = name;
+    wheel.setAttribute('aria-valuenow', activeIndex + 1);
+    wheel.setAttribute('aria-valuetext', name);
+    status.textContent = `${name}. ${tracks[activeIndex].children.length} sample projects.`;
+    syncSampleButtons();
 
-    if (!animate) {
-      requestAnimationFrame(() => {
-        carousel.style.removeProperty('--carousel-transition');
-      });
-    }
-  };
-
-  const goToIndex = (nextIndex, animate = true) => {
-    const { step, maxOffset } = measure();
-    maxIndex = step > 0 ? Math.ceil(maxOffset / step) : 0;
-    index = Math.min(Math.max(nextIndex, 0), maxIndex);
-    applyOffset(Math.min(index * step, maxOffset), animate);
-  };
-
-  const next = () => {
-    goToIndex(index >= maxIndex ? 0 : index + 1);
-  };
-
-  const prev = () => {
-    goToIndex(index <= 0 ? maxIndex : index - 1);
-  };
-
-  const stop = () => {
-    if (timer) {
-      clearInterval(timer);
-      timer = null;
+    if (!reduceMotion.matches && panel.animate) {
+      const direction = Math.sign(selection - previousSelection);
+      panel.animate([
+        { opacity: 0, transform: `translateX(${direction * 32}px)` },
+        { opacity: 1, transform: 'translateX(0)' },
+      ], { duration: 390, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
     }
   };
 
-  const start = () => {
-    stop();
-
-    if (paused || hovering || focusWithin || !inView || reduceMotion.matches) {
-      return;
-    }
-
-    timer = setInterval(next, 6500);
+  const scrollSamples = direction => {
+    const track = tracks[activeIndex];
+    const [first, second] = track.children;
+    const distance = second.offsetLeft - first.offsetLeft;
+    track.scrollBy({ left: direction * distance, behavior: reduceMotion.matches ? 'instant' : 'smooth' });
   };
 
-  const restart = () => {
-    stop();
-    start();
-  };
+  prevSample.addEventListener('click', () => scrollSamples(-1));
+  nextSample.addEventListener('click', () => scrollSamples(1));
+  tracks.forEach(track => track.addEventListener('scroll', syncSampleButtons, { passive: true }));
+  window.addEventListener('resize', syncSampleButtons);
+  syncSampleButtons();
 
-  const syncPause = () => {
-    if (!pauseBtn) {
-      return;
-    }
+  serviceShowcase.querySelector('[data-service-prev]').addEventListener('click', () => selectService(selection - 1));
+  serviceShowcase.querySelector('[data-service-next]').addEventListener('click', () => selectService(selection + 1));
 
-    pauseBtn.textContent = paused ? 'Play' : 'Pause';
-    pauseBtn.setAttribute('aria-label', paused ? 'Play automatic slide advance' : 'Pause automatic slide advance');
-  };
-
-  if (pauseBtn) {
-    pauseBtn.addEventListener('click', () => {
-      paused = !paused;
-      syncPause();
-
-      if (paused) {
-        stop();
-      } else {
-        start();
-      }
-    });
-  }
-
-  let drag = null;
-  let suppressClick = false;
-
-  viewport.addEventListener('pointerdown', (event) => {
-    if (event.pointerType === 'mouse' && event.button !== 0) {
-      return;
-    }
-
-    stop();
-    suppressClick = false;
-    drag = {
-      id: event.pointerId,
-      startX: event.clientX,
-      startOffset: offset,
-      moved: false,
-    };
-    carousel.classList.add('is-dragging');
-  });
-
-  window.addEventListener('pointermove', (event) => {
-    if (!drag || event.pointerId !== drag.id) {
-      return;
-    }
-
-    const delta = event.clientX - drag.startX;
-
-    if (Math.abs(delta) > 6) {
-      drag.moved = true;
-    }
-
-    if (drag.moved) {
-      applyOffset(drag.startOffset - delta, false);
-    }
-  });
-
-  const endDrag = (event) => {
-    if (!drag || event.pointerId !== drag.id) {
-      return;
-    }
-
-    const wasMoved = drag.moved;
-    drag = null;
-    carousel.classList.remove('is-dragging');
-
-    if (wasMoved) {
-      const { step } = measure();
-      goToIndex(step > 0 ? Math.round(offset / step) : 0);
-      suppressClick = true;
-    }
-
-    start();
-  };
-
-  window.addEventListener('pointerup', endDrag);
-  window.addEventListener('pointercancel', endDrag);
-
-  viewport.addEventListener(
-    'click',
-    (event) => {
-      if (suppressClick) {
-        event.preventDefault();
-        event.stopPropagation();
-        suppressClick = false;
-      }
-    },
-    true
-  );
-
-  viewport.addEventListener('dragstart', (event) => {
+  wheel.addEventListener('keydown', event => {
+    const directions = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1 };
+    const step = directions[event.key];
+    if (step === undefined && event.key !== 'Home' && event.key !== 'End') return;
     event.preventDefault();
+    if (event.key === 'Home') selectService(selection - activeIndex);
+    else if (event.key === 'End') selectService(selection - activeIndex + panels.length - 1);
+    else selectService(selection + step);
   });
 
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      prev();
-      restart();
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      next();
-      restart();
-    });
-  }
-
-  carousel.addEventListener('mouseenter', () => {
-    hovering = true;
-    stop();
-  });
-  carousel.addEventListener('mouseleave', () => {
-    hovering = false;
-    start();
-  });
-  carousel.addEventListener('focusin', () => {
-    focusWithin = true;
-    stop();
-  });
-  carousel.addEventListener('focusout', (event) => {
-    if (!carousel.contains(event.relatedTarget)) {
-      focusWithin = false;
-      start();
-    }
+  wheel.addEventListener('pointerdown', event => {
+    if (drag || !event.isPrimary || event.button !== 0) return;
+    const bounds = wheel.getBoundingClientRect();
+    drag = { id: event.pointerId, startX: event.clientX, pixelsPerStep: bounds.width / 4, travel: 0 };
+    wheel.setPointerCapture(event.pointerId);
+    wheel.classList.add('is-spinning');
   });
 
-  carousel.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowRight') {
-      next();
-      restart();
-    } else if (event.key === 'ArrowLeft') {
-      prev();
-      restart();
-    }
+  wheel.addEventListener('pointermove', event => {
+    if (event.pointerId !== drag?.id) return;
+    drag.travel = (event.clientX - drag.startX) / drag.pixelsPerStep;
+    spin(selection + drag.travel);
   });
 
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      stop();
-    } else {
-      start();
-    }
-  });
+  const finishSpin = event => {
+    if (event.pointerId !== drag?.id) return;
+    const steps = event.type === 'pointerup' ? Math.round(drag.travel) : 0;
+    drag = undefined;
+    wheel.classList.remove('is-spinning');
+    selectService(selection + steps);
+  };
 
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => goToIndex(index, false), 150);
-  });
-
-  if (reduceMotion.addEventListener) {
-    reduceMotion.addEventListener('change', () => {
-      if (reduceMotion.matches) {
-        stop();
-      } else {
-        start();
-      }
-    });
-  }
-
-  goToIndex(0, false);
-  syncPause();
-
-  if ('IntersectionObserver' in window) {
-    const viewObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          inView = entry.isIntersecting;
-        });
-
-        if (inView) {
-          start();
-        } else {
-          stop();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    viewObserver.observe(carousel);
-  } else {
-    inView = true;
-    start();
-  }
+  wheel.addEventListener('pointerup', finishSpin);
+  wheel.addEventListener('pointercancel', finishSpin);
+  wheel.addEventListener('lostpointercapture', finishSpin);
 }
+
 
 const workCarousel = document.querySelector('[data-work-carousel]');
 
