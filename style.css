@@ -266,27 +266,26 @@ p {
 }
 
 .header-brand {
+  height: 84px;
   display: grid;
   place-items: center;
   width: 101.4px;
   flex: none;
 }
 
-.header-brand img {
-  display: block;
+.header-brand img,
+.header-brand video {
   width: 100%;
   height: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .header-brand img {
-    animation: header-emblem-turn 8s ease-in-out infinite;
-  }
-
-  @keyframes header-emblem-turn {
-    25% { transform: perspective(300px) rotateY(28deg); }
-    75% { transform: perspective(300px) rotateY(-28deg); }
-  }
+.header-brand video {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 5px;
 }
 
 .main-nav {
