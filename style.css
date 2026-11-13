@@ -236,7 +236,7 @@ p {
 }
 
 .header-inner {
-  height: 72px;
+  height: 92px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -268,34 +268,25 @@ p {
 .header-brand {
   display: grid;
   place-items: center;
-  width: 76px;
-  height: 58px;
+  width: 101.4px;
   flex: none;
 }
 
-.header-brand model-viewer {
+.header-brand img {
   display: block;
-  width: 76px;
-  height: 58px;
-  pointer-events: none;
-  background: center / 92% auto no-repeat url("assets/advert-eyez-emblem.webp");
-  --poster-color: transparent;
-  --progress-bar-height: 0px;
+  width: 100%;
+  height: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .header-brand model-viewer:not(.is-loaded) {
-    animation: header-emblem-fallback-spin 8s ease-in-out infinite;
+  .header-brand img {
+    animation: header-emblem-turn 8s ease-in-out infinite;
   }
 
-  @keyframes header-emblem-fallback-spin {
-    25% { transform: rotateY(28deg); }
-    75% { transform: rotateY(-28deg); }
+  @keyframes header-emblem-turn {
+    25% { transform: perspective(300px) rotateY(28deg); }
+    75% { transform: perspective(300px) rotateY(-28deg); }
   }
-}
-
-.header-brand model-viewer.is-loaded {
-  background: none;
 }
 
 .main-nav {
@@ -2168,7 +2159,7 @@ section[id] {
   }
 
   .header-inner {
-    height: 64px;
+    height: 88px;
   }
 
   .logotype {
