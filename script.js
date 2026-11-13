@@ -709,3 +709,24 @@ if (clientsToggle) {
     clientsToggle.textContent = paused ? 'Resume logo slideshow' : 'Pause logo slideshow';
   });
 }
+
+const headerEmblem = document.querySelector('.header-brand model-viewer');
+
+if (headerEmblem) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const syncEmblemMotion = () => {
+    if (!headerEmblem.loaded) return;
+    if (reducedMotion.matches) {
+      headerEmblem.pause();
+      headerEmblem.currentTime = 0;
+    } else {
+      headerEmblem.play();
+    }
+  };
+
+  headerEmblem.addEventListener('load', () => {
+    headerEmblem.classList.add('is-loaded');
+    syncEmblemMotion();
+  });
+  reducedMotion.addEventListener('change', syncEmblemMotion);
+}

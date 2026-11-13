@@ -43,10 +43,17 @@
     <header class="site-header" id="topnav">
       <div class="frame header-inner">
         <a class="logotype header-brand" href="#top" aria-label="Advert Eyez — home">
-          <span class="header-brand-spin" aria-hidden="true">
-            <img src="assets/advert-eyez-logo.webp" alt="" width="240" height="224" />
-            <img src="assets/advert-eyez-logo.webp" alt="" width="240" height="224" />
-          </span>
+          <model-viewer
+            src="assets/advert-eyez-emblem.glb"
+            poster="assets/advert-eyez-emblem.webp"
+            animation-name="Slow 360 spin"
+            interaction-prompt="none"
+            camera-orbit="0deg 86deg auto"
+            field-of-view="30deg"
+            exposure="1"
+            aria-hidden="true"
+            tabindex="-1"
+          ></model-viewer>
         </a>
 
         <nav class="main-nav" id="mainnav" aria-label="Main navigation">
@@ -441,5 +448,6 @@
     </a>
 
     <script src="script.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
   </body>
 </html>
