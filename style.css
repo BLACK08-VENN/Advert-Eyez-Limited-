@@ -265,11 +265,15 @@ p {
   letter-spacing: 0;
 }
 
+.home-page .header-inner {
+  height: 176px;
+}
+
 .header-brand {
-  height: 84px;
+  height: 168px;
   display: grid;
   place-items: center;
-  width: 101.4px;
+  width: 202.8px;
   flex: none;
 }
 
@@ -2371,4 +2375,12 @@ section[id] {
 
 .header-brand:has(video:not([hidden])) img {
   visibility: hidden;
+}
+
+.home-page .hero {
+  padding-top: 188px;
+}
+
+.home-page section[id] {
+  scroll-margin-top: 176px;
 }
