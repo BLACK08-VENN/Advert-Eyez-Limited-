@@ -284,8 +284,6 @@ p {
   inset: 0;
   height: 100%;
   object-fit: contain;
-  background: #fff;
-  border-radius: 5px;
 }
 
 .main-nav {
@@ -2369,4 +2367,8 @@ section[id] {
 
 .portfolio-hero::before {
   background: linear-gradient(180deg, rgb(20 17 26 / 62%), rgb(20 17 26 / 12%) 36%, rgb(20 17 26 / 80%));
+}
+
+.header-brand:has(video:not([hidden])) img {
+  visibility: hidden;
 }
