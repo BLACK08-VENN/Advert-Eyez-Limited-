@@ -473,6 +473,25 @@ body.menu-open .nav-toggle span:last-child {
   overflow: hidden;
 }
 
+.clients-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.clients-toggle {
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--bg-raise);
+  font-size: 11px;
+  cursor: pointer;
+}
+
 .clients-marquee {
   overflow: hidden;
   padding-block: 18px;
@@ -490,28 +509,34 @@ body.menu-open .nav-toggle span:last-child {
   display: flex;
   flex: none;
   align-items: center;
-  justify-content: space-around;
-  min-width: 100vw;
+  gap: clamp(10px, 2vw, 22px);
+  margin: 0;
+  padding: 0 clamp(10px, 2vw, 22px) 0 0;
+  list-style: none;
 }
 
-.clients-set span {
-  display: flex;
-  align-items: center;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
+.client-logo {
+  display: grid;
+  flex: none;
+  place-items: center;
+  grid-template-rows: minmax(0, 1fr);
+  width: clamp(130px, 17vw, 206px);
+  height: clamp(82px, 11vw, 124px);
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
 }
 
-.clients-set span::after {
-  content: "·";
-  margin-inline: clamp(22px, 3.4vw, 52px);
-  color: var(--accent);
+.client-logo img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
 }
 
-.clients:hover .clients-track {
+.clients-marquee:hover .clients-track,
+.clients.is-paused .clients-track {
   animation-play-state: paused;
 }
 
@@ -1005,15 +1030,12 @@ body.menu-open .nav-toggle span:last-child {
 
 .services {
   --service-ink: #fff7fa;
-  --service-muted: #e0cddd;
-  --service-line: #674862;
+  --service-muted: var(--muted);
+  --service-line: var(--line);
   --service-accent: #ffab7c;
   overflow: hidden;
-  color: var(--service-ink);
-  background:
-    radial-gradient(ellipse at 50% 77%, rgb(100 52 151 / 52%), transparent 52%),
-    radial-gradient(ellipse at 94% 14%, rgb(169 70 63 / 24%), transparent 44%),
-    #201329;
+  color: var(--fg);
+  background: var(--bg);
 }
 
 .services .services-lead,
@@ -1025,7 +1047,7 @@ body.menu-open .nav-toggle span:last-child {
   display: block;
   width: fit-content;
   margin-top: 10px;
-  color: var(--service-ink);
+  color: var(--fg);
 }
 
 .services-grid {
@@ -2297,7 +2319,7 @@ section[id] {
     padding-inline: var(--pad);
   }
 
-  .clients-set span::after,
+  .clients-toggle,
   .clients-set[aria-hidden="true"] {
     display: none;
   }

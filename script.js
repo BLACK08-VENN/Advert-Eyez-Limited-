@@ -697,3 +697,15 @@ document.querySelectorAll('[data-work-carousel]').forEach((workCarousel) => {
     start();
   }
 });
+
+const clientsToggle = document.querySelector('[data-clients-toggle]');
+
+if (clientsToggle) {
+  const clients = clientsToggle.closest('.clients');
+  clientsToggle.hidden = false;
+
+  clientsToggle.addEventListener('click', () => {
+    const paused = clients.classList.toggle('is-paused');
+    clientsToggle.textContent = paused ? 'Resume logo slideshow' : 'Pause logo slideshow';
+  });
+}
