@@ -268,28 +268,29 @@ p {
 .header-brand {
   display: grid;
   place-items: center;
-  width: 66px;
+  width: 76px;
   height: 58px;
   flex: none;
 }
 
 .header-brand model-viewer {
   display: block;
-  width: 66px;
+  width: 76px;
   height: 58px;
   pointer-events: none;
-  background: center / 84% auto no-repeat url("assets/advert-eyez-emblem.webp");
+  background: center / 92% auto no-repeat url("assets/advert-eyez-emblem.webp");
   --poster-color: transparent;
   --progress-bar-height: 0px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .header-brand model-viewer:not(.is-loaded) {
-    animation: header-emblem-fallback-spin 8s linear infinite;
+    animation: header-emblem-fallback-spin 8s ease-in-out infinite;
   }
 
   @keyframes header-emblem-fallback-spin {
-    to { transform: rotateY(360deg); }
+    25% { transform: rotateY(28deg); }
+    75% { transform: rotateY(-28deg); }
   }
 }
 
