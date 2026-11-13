@@ -283,6 +283,16 @@ p {
   --progress-bar-height: 0px;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .header-brand model-viewer:not(.is-loaded) {
+    animation: header-emblem-fallback-spin 8s linear infinite;
+  }
+
+  @keyframes header-emblem-fallback-spin {
+    to { transform: rotateY(360deg); }
+  }
+}
+
 .header-brand model-viewer.is-loaded {
   background: none;
 }
