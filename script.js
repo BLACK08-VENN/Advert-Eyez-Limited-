@@ -386,14 +386,13 @@ if (serviceShowcase) {
 }
 
 
-const workCarousel = document.querySelector('[data-work-carousel]');
-
-if (workCarousel) {
+document.querySelectorAll('[data-work-carousel]').forEach((workCarousel) => {
   const viewport = workCarousel.querySelector('[data-work-viewport]');
   const track = workCarousel.querySelector('[data-work-track]');
   const prevBtn = workCarousel.querySelector('[data-work-prev]');
   const nextBtn = workCarousel.querySelector('[data-work-next]');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const hoverMedia = window.matchMedia('(hover: hover)');
 
   const CLONE = 4;
   const SPEED = 800;
@@ -697,4 +696,4 @@ if (workCarousel) {
     inView = true;
     start();
   }
-}
+});
