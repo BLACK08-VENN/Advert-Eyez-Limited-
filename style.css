@@ -57,7 +57,7 @@ body {
   background-color: var(--bg);
   background-image:
     linear-gradient(rgba(247, 245, 242, 0.94), rgba(247, 245, 242, 0.94)),
-    url("assets/hero-02.jpg");
+    url("assets/hero-pexels-26292001.jpg");
   background-position: center, center;
   background-size: auto, cover;
   background-repeat: no-repeat, no-repeat;
@@ -1651,7 +1651,7 @@ body.menu-open .nav-toggle span:last-child {
   z-index: -2;
   background:
     linear-gradient(180deg, rgba(20, 17, 26, 0.74) 0%, rgba(20, 17, 26, 0.5) 50%, rgba(20, 17, 26, 0.8) 100%),
-    url("assets/hero.jpg") center 42% / cover no-repeat;
+    url("assets/hero-pexels-13122335.jpg") center 42% / cover no-repeat;
   filter: saturate(0.82);
 }
 
