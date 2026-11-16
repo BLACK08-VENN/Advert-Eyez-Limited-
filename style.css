@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Myriad Pro Hero";
+  src: local("Myriad Pro Bold"), local("MyriadPro-Bold");
+  font-weight: 700;
+}
+
 :root {
   color-scheme: light;
 
@@ -451,11 +457,21 @@ body.menu-open .nav-toggle span:last-child {
 }
 
 .hero-title {
-  font-size: clamp(48px, 8.6vw, 146px);
-  line-height: 0.93;
-  letter-spacing: -0.072em;
-  font-weight: 400;
-  max-width: 17ch;
+  grid-column: 1 / -1;
+  font-family: "Myriad Pro Hero", Arial, sans-serif;
+  font-size: clamp(64px, 13vw, 210px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: normal;
+  text-shadow: 0 3px 24px rgba(20, 17, 26, 0.6);
+}
+
+.hero-title-advert {
+  color: #a263d1;
+}
+
+.hero-title-eyez {
+  color: #e76519;
 }
 
 .accent-dot {
@@ -1998,10 +2014,6 @@ section[id] {
     --section-y: clamp(72px, 10vw, 110px);
   }
 
-  .hero-title {
-    font-size: clamp(46px, 9.4vw, 110px);
-  }
-
   .hero-bottom {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -2193,7 +2205,11 @@ section[id] {
   }
 
   .hero-title {
-    font-size: clamp(44px, 10.4vw, 74px);
+    font-size: clamp(46px, 16vw, 104px);
+  }
+
+  .hero-title span {
+    display: block;
   }
 
   .hero-foot {
