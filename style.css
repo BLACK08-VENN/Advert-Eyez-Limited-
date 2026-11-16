@@ -492,7 +492,7 @@ body.menu-open .nav-toggle span:last-child {
    -------------------------------------------------------------------------- */
 
 .clients {
-  background: transparent;
+  background: #fff;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
@@ -518,8 +518,11 @@ body.menu-open .nav-toggle span:last-child {
 }
 
 .clients-marquee {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(12px, 2vw, 28px);
   overflow: hidden;
-  padding-block: 18px;
+  padding-block: clamp(18px, 3vw, 36px);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -527,16 +530,23 @@ body.menu-open .nav-toggle span:last-child {
 .clients-track {
   display: flex;
   width: max-content;
-  animation: clients-scroll 44s linear infinite;
+  animation: clients-scroll 36s linear infinite;
+}
+
+.clients-track--reverse {
+  animation-direction: reverse;
+  animation-delay: -9s;
 }
 
 .clients-set {
   display: flex;
   flex: none;
   align-items: center;
-  gap: clamp(10px, 2vw, 22px);
+  justify-content: space-around;
+  min-width: 100vw;
+  gap: clamp(12px, 2.8vw, 54px);
   margin: 0;
-  padding: 0 clamp(10px, 2vw, 22px) 0 0;
+  padding: 0 clamp(12px, 2.8vw, 54px) 0 0;
   list-style: none;
 }
 
@@ -545,12 +555,8 @@ body.menu-open .nav-toggle span:last-child {
   flex: none;
   place-items: center;
   grid-template-rows: minmax(0, 1fr);
-  width: clamp(130px, 17vw, 206px);
-  height: clamp(82px, 11vw, 124px);
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #fff;
+  width: clamp(108px, 12vw, 208px);
+  height: clamp(48px, 5.1vw, 82px);
 }
 
 .client-logo img {
@@ -558,6 +564,8 @@ body.menu-open .nav-toggle span:last-child {
   height: 100%;
   min-height: 0;
   object-fit: contain;
+  filter: grayscale(1) contrast(1.55);
+  mix-blend-mode: multiply;
 }
 
 .clients-marquee:hover .clients-track,
