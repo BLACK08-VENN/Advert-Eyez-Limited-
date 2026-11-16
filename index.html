@@ -35,12 +35,23 @@
       </style>
     </noscript>
   </head>
-  <body>
+  <body class="home-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header" id="topnav">
       <div class="frame header-inner">
-        <a class="logotype" href="#top" aria-label="Advert Eyez — home">ADVERT EYEZ<sup>®</sup></a>
+        <a class="logotype header-brand" href="#top" aria-label="Advert Eyez — home">
+          <img src="assets/ae-logo.webp" alt="" width="512" height="432" decoding="async" />
+          <video
+            data-header-animation="assets/ae-logo.webm"
+            muted
+            playsinline
+            loop
+            preload="none"
+            aria-hidden="true"
+            hidden
+          ></video>
+        </a>
 
         <nav class="main-nav" id="mainnav" aria-label="Main navigation">
           <a href="#studio">Studio</a>
@@ -76,6 +87,18 @@
             <figure class="hero-frame" data-hero-frame data-kind="image">
               <img src="assets/hero-pin-addd6b.jpg" alt="" loading="lazy" decoding="async" />
             </figure>
+            <figure class="hero-frame" data-hero-frame data-kind="image">
+              <picture>
+                <source media="(min-width: 3200px), (min-width: 1600px) and (min-resolution: 2dppx)" srcset="assets/hero-camera-lens-8k.webp" type="image/webp" />
+                <img src="assets/hero-camera-lens.webp" alt="" width="736" height="1319" loading="lazy" decoding="async" />
+              </picture>
+            </figure>
+            <figure class="hero-frame" data-hero-frame data-kind="image">
+              <picture>
+                <source media="(min-width: 3200px), (min-width: 1600px) and (min-resolution: 2dppx)" srcset="assets/hero-colorful-eye-8k.webp" type="image/webp" />
+                <img src="assets/hero-colorful-eye.webp" alt="" width="720" height="1280" loading="lazy" decoding="async" />
+              </picture>
+            </figure>
           </div>
         </div>
 
@@ -86,7 +109,7 @@
 
         <div class="frame hero-bottom">
           <h1 class="hero-title" id="hero-title">
-            We build the system a brand is judged by<span class="accent-dot">.</span>
+            Where the Ad meets the Eyez
           </h1>
 
           <div class="hero-side" data-reveal>
@@ -270,27 +293,9 @@
       </section>
 
 
-      <section class="film" aria-label="Advert Eyez — Where the Ad meets the Eye">
-        <div class="film-stage" aria-hidden="true"></div>
-        <div class="frame film-top mono">
-          <span>Position · Perception · Presence</span>
-          <span>Since 2019</span>
-        </div>
-        <div class="marquee" aria-hidden="true">
-          <div class="marquee-track">
-            <span>Advert Eyez <em>—</em> Seen <em>·</em> Understood <em>·</em> Remembered <em>—</em> </span>
-            <span>Advert Eyez <em>—</em> Seen <em>·</em> Understood <em>·</em> Remembered <em>—</em> </span>
-          </div>
-        </div>
-        <div class="frame film-foot mono">
-          <span>Africa &amp; GCC</span>
-          <span>Independent studio</span>
-        </div>
-      </section>
-
       <section class="contact section" id="contact" aria-labelledby="contact-title">
         <div class="frame">
-          <p class="lab" data-reveal>Contact</p>
+          <p class="lab" data-reveal>Contact us</p>
 
           <div class="contact-grid">
             <h2 class="display-l contact-title" id="contact-title" data-reveal>Have a project in mind? Talk to us.</h2>
@@ -298,6 +303,11 @@
             <div class="contact-side" data-reveal>
               <p>Based in Nairobi. We push boundaries through thinking not just about your brand, your product, or your marketing but how all of the elements of your business work together.</p>
               <p>Through our best-in-class techniques and bespoke growth plans we assess business problems and put in place marketing strategies that lead to commercial success.</p>
+              <p>
+                Block 10, ICD Business Park, Nairobi<br />
+                <a href="tel:+254722343279">+254 722 343279</a><br />
+                <a href="tel:+254734855593">+254 734 855593</a>
+              </p>
               <p class="mono contact-note">New business — worldwide</p>
               <a class="contact-cta" href="mailto:info@adverteyez.com">Contact us</a>
             </div>
@@ -311,12 +321,60 @@
           </div>
         </div>
       </section>
+      <section class="clients" aria-labelledby="clients-title">
+        <div class="frame clients-head">
+          <h2 class="lab" id="clients-title">Brands we’ve worked with</h2>
+          <button class="clients-toggle mono" type="button" data-clients-toggle hidden>Pause logo slideshow</button>
+        </div>
+        <div class="clients-marquee">
+          <div class="clients-track">
+            <ul class="clients-set">
+              <li class="client-logo"><img src="assets/clients/bummerz.webp" alt="Bummerz" width="332" height="56" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/chandaria.webp" alt="Chandaria Industries Ltd" width="286" height="100" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/coca-cola.webp" alt="Coca-Cola" width="198" height="194" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/jetlak.webp" alt="Jetlak Foods Limited" width="303" height="158" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/fairdeal.webp" alt="Fairdeal Furniture" width="306" height="172" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/eagm.webp" alt="EAGM" width="272" height="169" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/nivea.webp" alt="Nivea" width="195" height="189" loading="lazy" decoding="async" /></li>
+            </ul>
+            <ul class="clients-set" aria-hidden="true">
+              <li class="client-logo"><img src="assets/clients/bummerz.webp" alt="Bummerz" width="332" height="56" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/chandaria.webp" alt="Chandaria Industries Ltd" width="286" height="100" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/coca-cola.webp" alt="Coca-Cola" width="198" height="194" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/jetlak.webp" alt="Jetlak Foods Limited" width="303" height="158" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/fairdeal.webp" alt="Fairdeal Furniture" width="306" height="172" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/eagm.webp" alt="EAGM" width="272" height="169" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/nivea.webp" alt="Nivea" width="195" height="189" loading="lazy" decoding="async" /></li>
+            </ul>
+          </div>
+          <div class="clients-track clients-track--reverse">
+            <ul class="clients-set">
+              <li class="client-logo"><img src="assets/clients/krackles.webp" alt="Krackles" width="220" height="197" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/furniture-rama.webp" alt="Furniture Rama" width="297" height="58" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/tononoka.webp" alt="Tononoka Group" width="220" height="187" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/mika.webp" alt="MIKA" width="282" height="133" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/silentnight.webp" alt="Silentnight" width="339" height="185" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/rusty-bucketz.webp" alt="Rusty BucketZ" width="241" height="237" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/lol-lounge.webp" alt="LOL Lounge" width="352" height="382" loading="lazy" decoding="async" /></li>
+            </ul>
+            <ul class="clients-set" aria-hidden="true">
+              <li class="client-logo"><img src="assets/clients/krackles.webp" alt="Krackles" width="220" height="197" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/furniture-rama.webp" alt="Furniture Rama" width="297" height="58" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/tononoka.webp" alt="Tononoka Group" width="220" height="187" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/mika.webp" alt="MIKA" width="282" height="133" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/silentnight.webp" alt="Silentnight" width="339" height="185" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/rusty-bucketz.webp" alt="Rusty BucketZ" width="241" height="237" loading="lazy" decoding="async" /></li>
+              <li class="client-logo"><img src="assets/clients/lol-lounge.webp" alt="LOL Lounge" width="352" height="382" loading="lazy" decoding="async" /></li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
       <div class="frame footer-meta">
         <div class="footer-col footer-signal">
-          <a class="logotype logotype--footer" href="#top" aria-label="Advert Eyez — home">ADVERT EYEZ<sup>®</sup></a>
+          <a class="logotype logotype--footer" href="#top" aria-label="Advert Eyez — home"><img src="assets/ae-logo.webp" alt="" width="512" height="432" decoding="async" /></a>
           <p>An independent advertising studio building brands that are seen, understood and remembered.</p>
           <a class="footer-mail" href="mailto:info@adverteyez.com">info@adverteyez.com</a>
         </div>
@@ -333,20 +391,15 @@
 
         <div class="footer-col">
           <p class="footer-title mono">Contact</p>
-          <a href="mailto:info@adverteyez.com">New business</a>
+          <a href="tel:+254722343279">+254 722 343279</a>
+          <a href="tel:+254734855593">+254 734 855593</a>
           <a href="#contact">Start a project</a>
         </div>
 
         <div class="footer-col">
-          <p class="footer-title mono">Offices</p>
-          <span>Africa</span>
-          <span>GCC</span>
-          <span>Worldwide</span>
+          <p class="footer-title mono">Office</p>
+          <span>Block 10, ICD Business Park, Nairobi</span>
         </div>
-      </div>
-
-      <div class="frame footer-mark-wrap" aria-hidden="true">
-        <div class="footer-mark">ADVERT EYEZ<span class="footer-r">®</span></div>
       </div>
 
       <div class="frame footer-base mono">
