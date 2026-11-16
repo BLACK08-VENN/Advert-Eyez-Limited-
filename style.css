@@ -1819,6 +1819,12 @@ body.menu-open .nav-toggle span:last-child {
   color: var(--white);
 }
 
+.logotype--footer img {
+  display: block;
+  width: 132px;
+  height: auto;
+}
+
 .footer-mail {
   margin-top: auto;
   padding-bottom: 3px;
