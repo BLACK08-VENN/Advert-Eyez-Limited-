@@ -1,14 +1,14 @@
 :root {
   color-scheme: light;
 
-  --bg: #f4f1ee;
-  --bg-soft: #eae5df;
-  --bg-raise: #faf7f4;
-  --fg: #17131a;
-  --soft: #5f5661;
-  --muted: #6b6068;
-  --line: rgba(23, 19, 26, 0.16);
-  --line-strong: rgba(23, 19, 26, 0.3);
+  --bg: #f7f5f2;
+  --bg-soft: #efebe6;
+  --bg-raise: #ffffff;
+  --fg: #141217;
+  --soft: #555058;
+  --muted: #6f6972;
+  --line: rgba(20, 18, 23, 0.1);
+  --line-strong: rgba(20, 18, 23, 0.22);
   --accent: #c3421f;
   --accent-deep: #a92f15;
   --accent-bright: #e04a2a;
@@ -24,14 +24,14 @@
   --font: "Inter", "Helvetica Neue", Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --pad: clamp(18px, 2vw, 28px);
-  --maxw: 1500px;
-  --gap: clamp(18px, 2.2vw, 32px);
-  --section-y: clamp(88px, 10vw, 150px);
-  --radius: 8px;
+  --pad: clamp(20px, 3vw, 48px);
+  --maxw: 1440px;
+  --gap: clamp(20px, 2.5vw, 40px);
+  --section-y: clamp(96px, 11vw, 168px);
+  --radius: 12px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --t-body: clamp(17px, 1.1vw, 21px);
+  --t-body: clamp(17px, 1.05vw, 20px);
   --t-small: clamp(14px, 0.9vw, 16px);
 }
 
@@ -52,17 +52,18 @@ body {
   font-family: var(--font);
   font-size: var(--t-body);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--fg);
   background-color: var(--bg);
   background-image:
-    linear-gradient(rgba(244, 241, 238, 0.86), rgba(244, 241, 238, 0.86)),
+    linear-gradient(rgba(247, 245, 242, 0.94), rgba(247, 245, 242, 0.94)),
     url("assets/hero-02.jpg");
   background-position: center, center;
   background-size: auto, cover;
   background-repeat: no-repeat, no-repeat;
-  background-attachment: scroll, fixed;
+  background-attachment: scroll, scroll;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-feature-settings: "ss01" 1, "salt" 1;
   overflow-x: hidden;
@@ -80,9 +81,15 @@ a {
 }
 
 img,
-svg {
+svg,
+video {
   display: block;
   max-width: 100%;
+}
+
+img,
+video {
+  image-rendering: auto;
 }
 
 button {
@@ -229,9 +236,9 @@ p {
 
 .site-header.is-scrolled {
   color: var(--fg);
-  background: rgba(244, 241, 238, 0.9);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  background: rgba(247, 245, 242, 0.88);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
   border-bottom-color: var(--line);
 }
 
@@ -439,6 +446,8 @@ body.menu-open .nav-toggle span:last-child {
   height: 100%;
   object-fit: cover;
   object-position: center 38%;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .hero-stage::before {
@@ -449,10 +458,10 @@ body.menu-open .nav-toggle span:last-child {
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(20, 17, 26, 0.42) 0%,
-    rgba(20, 17, 26, 0.06) 30%,
-    rgba(20, 17, 26, 0.14) 64%,
-    rgba(20, 17, 26, 0.76) 100%
+    rgba(12, 10, 16, 0.38) 0%,
+    rgba(12, 10, 16, 0.08) 34%,
+    rgba(12, 10, 16, 0.18) 62%,
+    rgba(12, 10, 16, 0.72) 100%
   );
 }
 
@@ -522,7 +531,7 @@ body.menu-open .nav-toggle span:last-child {
    -------------------------------------------------------------------------- */
 
 .clients {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.35);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
@@ -577,10 +586,11 @@ body.menu-open .nav-toggle span:last-child {
   grid-template-rows: minmax(0, 1fr);
   width: clamp(130px, 17vw, 206px);
   height: clamp(82px, 11vw, 124px);
-  padding: 12px;
+  padding: 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #fff;
+  background: var(--bg-raise);
+  box-shadow: 0 1px 2px rgba(20, 18, 23, 0.04);
 }
 
 .client-logo img {
@@ -638,7 +648,7 @@ body.menu-open .nav-toggle span:last-child {
    -------------------------------------------------------------------------- */
 
 .work {
-  background: rgba(234, 229, 223, 0.5);
+  background: var(--bg-soft);
   padding-bottom: 0;
 }
 
@@ -1743,6 +1753,27 @@ body.menu-open .nav-toggle span:last-child {
 .contact-note {
   margin-top: 8px;
   color: var(--muted) !important;
+}
+
+.contact-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin-top: 8px;
+  padding: 14px 22px;
+  border: 1px solid var(--fg);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.contact-cta:hover {
+  background: var(--fg);
+  color: var(--bg);
 }
 
 .contact-mail-row {
