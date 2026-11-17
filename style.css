@@ -1825,7 +1825,7 @@ body.menu-open .nav-toggle span:last-child {
 
 @media (prefers-reduced-motion: no-preference) {
   .contact-side.is-in .contact-social-ball {
-    animation: contact-social-bounce 2.1s var(--social-bounce-delay) 2;
+    animation: contact-social-bounce 2.1s var(--social-bounce-delay) infinite;
   }
 
   .contact-side.is-in .contact-social-link:is(:hover, :focus-visible) .contact-social-ball {
