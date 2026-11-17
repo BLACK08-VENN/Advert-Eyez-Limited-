@@ -2508,7 +2508,7 @@ section[id] {
   background: var(--bg);
 }
 
-.home-page :is(.studio, .services, .contact, .clients[aria-labelledby]) .lab {
+.home-page :where(.studio, .services, .contact, .clients[aria-labelledby]) .lab {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -2516,7 +2516,7 @@ section[id] {
   color: var(--soft);
 }
 
-.home-page :is(.studio, .services, .contact, .clients[aria-labelledby]) .lab::before {
+.home-page :where(.studio, .services, .contact, .clients[aria-labelledby]) .lab::before {
   width: 7px;
   height: 7px;
   flex: none;
@@ -2616,7 +2616,7 @@ section[id] {
 .home-page .services .work-slide-caption::after {
   color: #ffab7c;
   font-size: 16px;
-  content: "↗" / "";
+  content: "→" / "";
 }
 
 .home-page .services .work-slide-title {
