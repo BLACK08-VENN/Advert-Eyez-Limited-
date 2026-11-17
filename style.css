@@ -2545,7 +2545,6 @@ section[id] {
 
 .home-page :is(.studio-title, #services-title, .contact-title) {
   font-size: clamp(37px, 5.4vw, 76px);
-  font-weight: 500;
   line-height: 1.02;
 }
 
