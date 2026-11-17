@@ -1730,6 +1730,108 @@ body.menu-open .nav-toggle span:last-child {
   color: var(--bg);
 }
 
+.contact-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.contact-social-link {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  width: 110px;
+  min-height: 120px;
+  padding: 0 8px 10px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.contact-social-ball {
+  display: grid;
+  place-items: center;
+  width: 53px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 24%, #785da2, #482b70 60%, #291841);
+  box-shadow: 0 5px 10px rgba(41, 24, 65, 0.25);
+  color: #fff;
+  transform-origin: center bottom;
+}
+
+.contact-social-follow {
+  position: absolute;
+  top: 1px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-social-follow {
+    opacity: 0;
+    transform: translateY(6px) scale(0.9);
+    transition: opacity 0.18s ease, transform 0.22s var(--ease);
+  }
+
+  .contact-social-link:is(:hover, :focus-visible) .contact-social-follow {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .contact-side.is-in .contact-social-ball {
+    animation: contact-social-bounce 2.25s 0.3s 2;
+  }
+
+  .contact-side.is-in .contact-social-link:is(:hover, :focus-visible) .contact-social-ball {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes contact-social-bounce {
+  0%, 100% {
+    transform: none;
+  }
+
+  9% {
+    transform: scale(1.12, 0.86);
+    animation-timing-function: ease-out;
+  }
+
+  24% {
+    transform: translate(-16px, -29px) rotate(-14deg);
+    animation-timing-function: ease-in;
+  }
+
+  43% {
+    transform: translateX(-20px) scale(1.13, 0.84);
+    animation-timing-function: ease-out;
+  }
+
+  61% {
+    transform: translate(17px, -25px) rotate(15deg);
+    animation-timing-function: ease-in;
+  }
+
+  79% {
+    transform: translateX(20px) scale(1.1, 0.88);
+    animation-timing-function: ease-out;
+  }
+
+  90% {
+    transform: translate(7px, -9px) rotate(5deg);
+    animation-timing-function: ease-in;
+  }
+}
+
 .contact-mail-row {
   display: flex;
   align-items: baseline;
