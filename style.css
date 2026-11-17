@@ -1870,7 +1870,7 @@ body.menu-open .nav-toggle span:last-child {
 
 .footer-meta {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr repeat(3, minmax(0, 1fr));
   border-top: 1px solid rgba(246, 242, 238, 0.2);
   border-bottom: 1px solid rgba(246, 242, 238, 0.2);
 }
@@ -2142,7 +2142,7 @@ section[id] {
   }
 
   .footer-meta {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .footer-signal {
@@ -2152,20 +2152,11 @@ section[id] {
     border-bottom: 1px solid rgba(246, 242, 238, 0.2);
   }
 
-  .footer-col + .footer-col {
-    border-left: 0;
-  }
-
-  .footer-col:nth-child(even) {
-    border-left: 1px solid rgba(246, 242, 238, 0.2);
-  }
-
   .footer-col {
     min-height: 180px;
   }
 
-  .footer-signal + .footer-col,
-  .footer-signal + .footer-col + .footer-col + .footer-col {
+  .footer-signal + .footer-col {
     border-left: 0;
   }
 }
@@ -2360,15 +2351,14 @@ section[id] {
     grid-template-columns: 1fr;
   }
 
-  .footer-col,
-  .footer-col:nth-child(even) {
+  .footer-meta .footer-col {
     min-height: 0;
     padding: 22px 0;
-    border-left: 0 !important;
+    border-left: 0;
     border-top: 1px solid rgba(246, 242, 238, 0.16);
   }
 
-  .footer-signal {
+  .footer-meta .footer-signal {
     padding-top: 0;
     border-top: 0;
     padding-bottom: 28px;
