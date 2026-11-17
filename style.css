@@ -1716,8 +1716,10 @@ body.menu-open .nav-toggle span:last-child {
   width: fit-content;
   margin-top: 8px;
   padding: 14px 22px;
-  border: 1px solid var(--fg);
+  border: 1px solid var(--accent);
   border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -1726,8 +1728,8 @@ body.menu-open .nav-toggle span:last-child {
 }
 
 .contact-cta:hover {
-  background: var(--fg);
-  color: var(--bg);
+  border-color: var(--accent-deep);
+  background: var(--accent-deep);
 }
 
 .contact-social-links {
