@@ -15,6 +15,25 @@ if (heroReel) {
   let inView = true;
 
   const kindOf = (frame) => frame.dataset.kind || (frame.querySelector('video') ? 'video' : 'image');
+  const photos = frames.filter(frame => kindOf(frame) === 'image');
+  const clips = frames.filter(frame => kindOf(frame) === 'video');
+  const playlist = [];
+  if (photos.length && clips.length) {
+    let photo = 0;
+    let clip = 0;
+    do {
+      for (let count = 0; count < 3; count++) {
+        playlist.push(frames.indexOf(photos[photo]));
+        photo = (photo + 1) % photos.length;
+      }
+      playlist.push(frames.indexOf(clips[clip]));
+      clip = (clip + 1) % clips.length;
+    } while (photo !== 0 || clip !== 0);
+  } else {
+    frames.forEach((_, frameIndex) => playlist.push(frameIndex));
+  }
+  let position = 0;
+
   const videoOf = (frame) => frame.querySelector('video');
   const rateOf = (frame) => {
     const rate = Number(frame.dataset.rate);
@@ -81,7 +100,8 @@ if (heroReel) {
     if (!frame) return;
 
     timer = setTimeout(() => {
-      show((index + 1) % frames.length);
+      position = (position + 1) % playlist.length;
+      show(playlist[position]);
       schedule();
     }, holdOf(frame));
   };
@@ -111,6 +131,7 @@ if (heroReel) {
         frame.classList.remove('is-leaving');
         frame.classList.toggle('is-active', frameIndex === 0);
       });
+      position = 0;
       index = 0;
       return;
     }
