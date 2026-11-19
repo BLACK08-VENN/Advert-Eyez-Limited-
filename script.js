@@ -307,7 +307,7 @@ document.querySelectorAll('[data-work-carousel]').forEach((workCarousel) => {
 
   const CLONE = 4;
   const SPEED = 800;
-  const AUTOPLAY = 8000;
+  const AUTOPLAY = 2000;
 
   const originals = Array.from(track.children);
   const cloneSlide = (slide) => {
@@ -324,6 +324,7 @@ document.querySelectorAll('[data-work-carousel]').forEach((workCarousel) => {
   let index = CLONE;
   let offset = 0;
   let timer = null;
+  let paused = false;
   let hovering = false;
   let focusWithin = false;
   let inView = false;
@@ -399,7 +400,7 @@ document.querySelectorAll('[data-work-carousel]').forEach((workCarousel) => {
   const start = () => {
     stop();
 
-    if (hovering || focusWithin || !inView || reduceMotion.matches) {
+    if (paused || document.hidden || hovering || focusWithin || !inView || reduceMotion.matches) {
       return;
     }
 
@@ -410,6 +411,14 @@ document.querySelectorAll('[data-work-carousel]').forEach((workCarousel) => {
     stop();
     start();
   };
+
+  const pauseButton = workCarousel.querySelector('[data-piano-pause]');
+  pauseButton?.addEventListener('click', () => {
+    paused = !paused;
+    pauseButton.textContent = paused ? 'Resume' : 'Pause';
+    pauseButton.setAttribute('aria-pressed', String(paused));
+    restart();
+  });
 
   track.addEventListener('transitionend', (event) => {
     if (event.target !== track || event.propertyName !== 'transform') {
@@ -640,4 +649,26 @@ if (headerAnimation) {
 
   reducedMotion.addEventListener('change', syncHeaderAnimation);
   syncHeaderAnimation();
+}
+
+const serviceGallery = document.querySelector('.service-gallery');
+if (serviceGallery && typeof HTMLDialogElement !== 'undefined') {
+  const viewer = document.createElement('dialog');
+  viewer.className = 'service-lightbox';
+  viewer.setAttribute('aria-label', 'Gallery photograph');
+  viewer.innerHTML = '<button type="button">Close</button><img alt="">';
+  document.body.append(viewer);
+  const photo = viewer.querySelector('img');
+  viewer.querySelector('button').addEventListener('click', () => viewer.close());
+  viewer.addEventListener('click', event => {
+    if (event.target === viewer) viewer.close();
+  });
+  serviceGallery.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    photo.src = link.href;
+    photo.alt = link.querySelector('img').alt;
+    viewer.showModal();
+  });
 }

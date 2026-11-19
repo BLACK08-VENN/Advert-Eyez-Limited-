@@ -104,3 +104,46 @@ body { background: var(--paper); }
   letter-spacing: -.025em;
   text-wrap: balance;
 }
+
+.piano { background: transparent; }
+.piano .work-track { align-items: flex-start; }
+.piano .work-slide {
+  height: clamp(18rem, 34vw, 30rem);
+  min-height: 0;
+  border-inline-end: 4px solid var(--paper);
+}
+.piano .short-key { height: clamp(15rem, 28vw, 25rem); }
+.piano .work-slide-media { object-fit: cover; filter: none; }
+.piano .work-slide-caption {
+  inset: auto 0 0;
+  align-items: flex-start;
+  text-align: left;
+  padding: 3rem 1rem 1.1rem;
+  background: linear-gradient(transparent, rgb(4 7 25 / 85%));
+}
+.piano .work-slide-title { padding: 0; background: none; font-size: clamp(1.2rem,2.2vw,2.4rem); }
+.piano .work-nav { position: static; justify-content: flex-end; padding-top: .75rem; }
+.piano .work-nav button { color: var(--ink-navy); background: white; border: 1px solid #aaa3b5; height: 44px; cursor: pointer; }
+.piano .work-nav-btn { width: 44px; }
+.piano-pause { padding-inline: 1rem; font: inherit; }
+.service-detail { background: var(--ink-navy); color: white; padding: clamp(9.5rem,16vw,13rem) 0 clamp(2.5rem,6vw,5rem); }
+.service-intro .project-back { font-size: .875rem; }
+.service-intro h1 { font-size: clamp(2.4rem,6.7vw,6.5rem); letter-spacing: -.05em; font-weight: 500; line-height: 1.02; margin: .5em 0 .3em; }
+.service-intro p { max-width: 48ch; font-size: clamp(1.1rem,1.8vw,1.55rem); line-height: 1.5; color: #e5dfef; }
+.service-gallery { display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: clamp(.65rem,1.8vw,1.8rem); padding-block: clamp(2rem,5vw,5rem); align-items: center; }
+.service-gallery a { grid-column: span 5; cursor: zoom-in; overflow: hidden; }
+.service-gallery a:nth-child(4n+1), .service-gallery a:nth-child(4n) { grid-column: span 7; }
+.service-gallery a:last-child:nth-child(odd) { grid-column: 2 / 12; }
+.service-gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.service-gallery a:nth-child(4n+2) img, .service-gallery a:nth-child(4n+3) img { aspect-ratio: 1; }
+.service-notes { padding-block: 0 clamp(3rem,5vw,6rem); }
+.service-notes .project-meta { grid-template-columns: repeat(auto-fit,minmax(min(100%,15rem),1fr)); align-items: start; }
+.service-lightbox { background: #090b16; color: white; border: 0; padding: 1rem; max-width: 95vw; max-height: 95svh; }
+.service-lightbox::backdrop { background: rgb(2 4 12 / 90%); }
+.service-lightbox img { max-height: 75svh; max-width: min(86vw,90rem); object-fit: contain; margin: auto; }
+.service-lightbox button { display: block; margin: 0 0 .7rem auto; background: transparent; color: white; padding: .4rem .8rem; border: 1px solid #918ba4; cursor: pointer; }
+@media(max-width:600px) {
+  .service-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .service-gallery a:nth-child(n) { grid-column: span 1; }
+  .service-gallery a:first-child, .service-gallery a:nth-child(4) { grid-column: 1 / -1; }
+}
