@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Fun Phoebe";
+  src: url("assets/fonts/fun-phoebe-regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
 
@@ -22,6 +30,7 @@
   --dark-muted: rgba(246, 242, 238, 0.58);
 
   --font: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --display-font: "Fun Phoebe", var(--font);
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --pad: clamp(20px, 3vw, 48px);
@@ -155,17 +164,27 @@ p {
   color: var(--dark-muted);
 }
 
+.display-l,
+.display-m,
+.hero-title,
+.work-slide-title,
+.project-title,
+.service-card h3,
+.service-sample-card h3 {
+  font-family: var(--display-font);
+}
+
 .display-l {
   font-size: clamp(44px, 7.2vw, 116px);
-  line-height: 0.98;
-  letter-spacing: -0.065em;
+  line-height: 1;
+  letter-spacing: -0.02em;
   font-weight: 400;
 }
 
 .display-m {
   font-size: clamp(38px, 5.2vw, 82px);
   line-height: 1;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.02em;
   font-weight: 400;
 }
 
@@ -461,8 +480,8 @@ body.menu-open .nav-toggle span:last-child {
 
 .hero-title {
   font-size: clamp(48px, 8.6vw, 146px);
-  line-height: 0.93;
-  letter-spacing: -0.072em;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
   font-weight: 400;
   max-width: 17ch;
 }
@@ -730,9 +749,9 @@ body.menu-open .nav-toggle span:last-child {
   border-radius: 6px;
   background: var(--dark);
   font-size: clamp(22px, 2.2vw, 34px);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   color: #fff;
 }
 
@@ -904,9 +923,9 @@ body.menu-open .nav-toggle span:last-child {
 .project-title {
   max-width: 18ch;
   font-size: clamp(44px, 8vw, 118px);
-  font-weight: 500;
-  line-height: 0.94;
-  letter-spacing: -0.04em;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .project-category {
@@ -1119,7 +1138,7 @@ body.menu-open .nav-toggle span:last-child {
   width: 100%;
   padding: 18px clamp(16px, 2.2vw, 24px) clamp(18px, 2.6vw, 26px);
   font-size: clamp(17px, 1.5vw, 23px);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.15;
 }
 
@@ -1266,7 +1285,7 @@ body.menu-open .nav-toggle span:last-child {
   padding: 18px clamp(17px, 2.5vw, 27px) clamp(20px, 3vw, 30px);
   color: var(--service-ink);
   font-size: clamp(18px, 1.8vw, 27px);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.15;
 }
 
@@ -2516,7 +2535,6 @@ section[id] {
 
 .home-page :is(.studio-title, #services-title, .contact-title) {
   font-size: clamp(37px, 5.4vw, 76px);
-  font-weight: 500;
   line-height: 1.02;
 }
 
