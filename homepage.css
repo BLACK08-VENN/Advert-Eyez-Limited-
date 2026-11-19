@@ -74,3 +74,47 @@
   .ae-whatsapp { margin-left: 0; }
   .ae-details { flex-direction: column; }
 }
+
+/* Keep the outgoing shot beneath the dissolve so the reel never fades to black. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-frame.is-leaving {
+    opacity: 1;
+    z-index: 0;
+  }
+
+  .hero-frame.is-active {
+    z-index: 1;
+    animation: hero-dissolve 1.35s ease-in-out both;
+  }
+
+  .hero-frame:nth-child(odd) { --drift-x: -.8%; }
+  .hero-frame:nth-child(even) { --drift-x: .8%; }
+
+  .hero-frame:is(.is-active, .is-leaving) img {
+    animation: hero-drift 6.4s ease-out both;
+  }
+
+  .hero-frame.is-active::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 84% 24%, rgb(255 205 150 / 36%), transparent 55%);
+    animation: hero-light 2.2s ease-out both;
+  }
+}
+
+@keyframes hero-dissolve {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes hero-drift {
+  from { transform: scale(1.025); }
+  to { transform: translateX(var(--drift-x)) scale(1.075); }
+}
+
+@keyframes hero-light {
+  0%, 100% { opacity: 0; }
+  42% { opacity: .63; }
+}

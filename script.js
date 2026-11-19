@@ -5,7 +5,7 @@ if (heroReel) {
   const hero = document.querySelector('.hero');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  const IMAGE_HOLD = 300;
+  const IMAGE_HOLD = 4800;
   const VIDEO_HOLD = 1200;
   const VIDEO_RATE = 0.35;
 
@@ -53,7 +53,8 @@ if (heroReel) {
     const next = frames[nextIndex];
 
     if (current && current !== next) {
-      current.classList.remove('is-active');
+      frames.forEach((frame) => frame.classList.remove('is-leaving'));
+      current.classList.replace('is-active', 'is-leaving');
       const currentVideo = videoOf(current);
       if (currentVideo) currentVideo.pause();
     }
@@ -106,7 +107,10 @@ if (heroReel) {
     if (reduceMotion.matches) {
       stop();
       pauseVideos();
-      frames.forEach((frame, frameIndex) => frame.classList.toggle('is-active', frameIndex === 0));
+      frames.forEach((frame, frameIndex) => {
+        frame.classList.remove('is-leaving');
+        frame.classList.toggle('is-active', frameIndex === 0);
+      });
       index = 0;
       return;
     }
