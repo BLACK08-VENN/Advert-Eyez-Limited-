@@ -1,0 +1,76 @@
+.ae-wrap {
+  width: min(100% - clamp(2.5rem, 9vw, 10rem), 85rem);
+  margin-inline: auto;
+}
+.ae-intro, .ae-services {
+  background: #faf9f7;
+  color: #221d25;
+}
+.ae-split {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: baseline;
+  gap: 2rem;
+  padding-block: clamp(3.5rem, 8vw, 8rem);
+  border-bottom: 1px solid #cecacb;
+}
+.ae-label {
+  margin: 0;
+  font: 500 .875rem/1.5 var(--mono);
+  letter-spacing: .03em;
+}
+.ae-intro p, .ae-heading, .ae-mail {
+  font-family: Manrope, Arial, sans-serif;
+  letter-spacing: -.055em;
+  line-height: 1.08;
+  font-weight: 500;
+}
+.ae-intro p {
+  max-width: 24ch;
+  margin: 0;
+  font-size: clamp(2rem, 4.3vw, 4.5rem);
+  text-wrap: balance;
+}
+.ae-services { padding-block: clamp(3rem, 6vw, 6rem); }
+.ae-heading { margin: 0 0 2rem; font-size: clamp(2.5rem, 6vw, 5.5rem); }
+.ae-gallery {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: clamp(1rem, 2vw, 2rem);
+}
+.ae-gallery img { width: 100%; height: clamp(13rem, 25vw, 24rem); object-fit: cover; }
+.ae-gallery span { display: block; margin-top: .65rem; font-size: clamp(1.15rem, 2vw, 1.65rem); }
+.ae-index {
+  list-style: none;
+  padding: 0;
+  margin: clamp(2rem, 5vw, 4rem) 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem;
+}
+.ae-index a { display: block; border-top: 1px solid #cecacb; padding-block: .95rem; }
+.ae-services a:hover, .ae-contact a:not(.ae-whatsapp):hover { text-decoration: underline; text-underline-offset: .2em; }
+.home-page .clients[aria-labelledby] { background: white; color: #221d25; padding-block: 2.5rem; }
+.home-page .clients .clients-head { width: min(100% - clamp(2.5rem, 9vw, 10rem), 85rem); padding-inline: 0; }
+.home-page .clients .clients-head :is(.lab, button) { color: #47404a; }
+.ae-contact { color: #faf8fa; background: #211824; padding-block: clamp(3rem, 7vw, 7rem) 1.5rem; }
+.ae-mail { display: inline-block; margin-block: 1.15rem 2.25rem; font-size: clamp(1.6rem, 6vw, 6rem); }
+.ae-details, .ae-bottom, .ae-bottom nav { display: flex; align-items: start; flex-wrap: wrap; gap: 1rem 3rem; }
+.ae-details { border-top: 1px solid #514754; padding-block: 2rem 3.5rem; }
+.ae-details address { font-style: normal; }
+.ae-phones { display: grid; }
+.ae-whatsapp { margin-left: auto; padding: .75rem 1.2rem; background: #ff8549; border-radius: 2rem; color: #231420; font-weight: 600; }
+.ae-whatsapp:hover { background: #ffa072; }
+.ae-bottom { justify-content: space-between; border-top: 1px solid #514754; padding-top: 1.35rem; }
+.ae-bottom nav { gap: .7rem 1.4rem; }
+.ae-bottom :is(small, a) { font-size: .875rem; }
+@media (max-width: 700px) {
+  .ae-split { grid-template-columns: 1fr; gap: 1.25rem; }
+  .ae-gallery { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .ae-gallery a:first-child { grid-column: 1 / -1; }
+  .ae-gallery img { height: auto; aspect-ratio: 4/3; }
+  .ae-gallery a:first-child img { aspect-ratio: 16/9; }
+  .ae-index { grid-template-columns: 1fr; }
+  .ae-whatsapp { margin-left: 0; }
+  .ae-details { flex-direction: column; }
+}

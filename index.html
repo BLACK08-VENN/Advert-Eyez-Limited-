@@ -15,17 +15,13 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="preload" as="image" href="assets/hero-pexels-26292001.jpg" fetchpriority="high" />
-    <link rel="preload" as="image" href="assets/hero-pexels-13122335.jpg" />
-    <link rel="preload" as="image" href="assets/hero-pexels-17423274.jpg" />
-    <link rel="preload" as="image" href="assets/hero-pexels-30270248.jpg" />
-    <link rel="preload" as="image" href="assets/hero-pin-e53d06.jpg" />
-    <link rel="preload" as="image" href="assets/hero-pin-addd6b.jpg" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314111a'/%3E%3Cpath d='M17 47 30.5 17h3L47 47h-6.6l-2.8-6.9H26[...]
     />
+    <link rel="preload" as="image" href="assets/hero-pexels-26292001-4k.webp" fetchpriority="high" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="homepage.css" />
     <noscript>
       <style>
         [data-reveal] {
@@ -56,6 +52,7 @@
         <nav class="main-nav" id="mainnav" aria-label="Main navigation">
           <a href="#studio">Studio</a>
           <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
         </nav>
 
         <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav">
@@ -117,219 +114,34 @@
         </div>
       </section>
 
-    
-
-      <section class="studio section" id="studio" aria-labelledby="studio-title">
-        <div class="frame">
-          <p class="lab" data-reveal>Studio position</p>
-
-          <h2 class="display-l studio-title" id="studio-title" data-reveal>
-            Position first. Then the form that carries it.
-          </h2>
-
-          <div class="studio-copy" data-reveal>
-            <div class="studio-cols">
-              <p>
-                We offer a comprehensive range of services that address both the traditional and digital marketing aspects of your business.
-                <strong>We create innovative marketing campaigns tailored to your needs.</strong>
-              </p>
-              <p>
-                The result is not a style package. It is a system for how the brand sounds, looks, behaves, launches and scales — naming and language, identity and art direction, digital presen[...]
-              </p>
-            </div>
-            <a class="textlink" href="#services">What we do <span aria-hidden="true">↗</span></a>
-          </div>
+      <section class="ae-intro" id="studio" aria-labelledby="studio-heading">
+        <div class="ae-wrap ae-split">
+          <h2 class="ae-label" id="studio-heading">The studio</h2>
+          <p>We design campaigns in Nairobi and build the places people encounter them.</p>
         </div>
       </section>
 
-      <section class="services section" id="services" aria-labelledby="services-title">
-        <div class="frame services-head">
-          <div>
-            <p class="lab" data-reveal>Services</p>
-            <h2 class="display-m" id="services-title" data-reveal>What we do, end to end.</h2>
+      <section class="ae-services" id="services" aria-labelledby="capabilities-heading">
+        <div class="ae-wrap">
+          <h2 class="ae-heading" id="capabilities-heading">Services</h2>
+          <div class="ae-gallery">
+            <a href="work/billboards.html"><img src="assets/work/billboards-reference.webp" loading="lazy" decoding="async" alt="" /><span>Billboards</span></a>
+            <a href="work/activations.html"><img src="assets/work/activations.webp" loading="lazy" decoding="async" alt="" /><span>Activations</span></a>
+            <a href="work/shop-fit-outs.html"><img src="assets/work/shop-fit-outs-reference.webp" loading="lazy" decoding="async" alt="" /><span>Shop Fit-Outs</span></a>
           </div>
-          <p class="services-lead" data-reveal>
-            Billboards, design, activations, production and the spaces in between — one team across eleven disciplines.
-            <a class="textlink" href="#contact">Start a project <span aria-hidden="true">→</span></a>
-          </p>
-        </div>
-
-        <div class="frame work-carousel" data-work-carousel role="region" aria-roledescription="carousel" aria-label="Services">
-          <div class="work-viewport" data-work-viewport>
-            <div class="work-track" data-work-track>
-              <a class="work-slide" href="work/billboards.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/billboards-reference.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">Billboards</h3>
-                </div>
-              </a>
-
-              <a class="work-slide" href="work/design.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/design-reference.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">Design</h3>
-                </div>
-              </a>
-
-              <a class="work-slide" href="work/activations.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/activations.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">Activations</h3>
-                </div>
-              </a>
-
-              <a class="work-slide" href="work/videos-and-animations.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/videos-and-animations-reference.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">Videos &amp; Animations</h3>
-                </div>
-              </a>
-
-              <a class="work-slide" href="work/large-format-printing.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/large-format-printing-reference.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">Large Format Printing</h3>
-                </div>
-              </a>
-
-              <a class="work-slide" href="work/branding-and-pos.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/branding-and-pos.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">Branding and POS</h3>
-                </div>
-              </a>
-
-              <a class="work-slide" href="work/shop-fit-outs.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/shop-fit-outs-reference.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">Shop Fit-Outs</h3>
-                </div>
-              </a>
-
-              <a class="work-slide" href="work/interior-design.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/interior-design-reference.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">Interior Design</h3>
-                </div>
-              </a>
-
-              <a class="work-slide" href="work/fsu-design-production.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/fsu-design-production-reference.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">FSU Design &amp; Production</h3>
-                </div>
-              </a>
-
-              <a class="work-slide" href="work/pr-and-events.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/pr-and-events-reference.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">PR &amp; Events</h3>
-                </div>
-              </a>
-
-              <a class="work-slide" href="work/fiberglass-production.html">
-                <img class="work-slide-media portfolio-tile-photo" src="assets/work/fiberglass-production-reference.webp" alt="" loading="lazy" decoding="async" />
-                <div class="work-slide-caption">
-                  <h3 class="work-slide-title">Fiberglass Production</h3>
-                </div>
-              </a>
-
-            </div>
-          </div>
-
-          <div class="work-nav">
-            <button type="button" class="work-nav-btn" data-work-prev aria-label="Previous service">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M19 12H5" />
-                <path d="M11 18l-6-6 6-6" />
-              </svg>
-            </button>
-            <button type="button" class="work-nav-btn" data-work-next aria-label="Next service">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M5 12h14" />
-                <path d="M13 6l6 6-6 6" />
-              </svg>
-            </button>
-          </div>
+          <ul class="ae-index">
+            <li><a href="work/design.html">Design</a></li>
+            <li><a href="work/videos-and-animations.html">Videos &amp; Animations</a></li>
+            <li><a href="work/large-format-printing.html">Large Format Printing</a></li>
+            <li><a href="work/branding-and-pos.html">Branding and POS</a></li>
+            <li><a href="work/interior-design.html">Interior Design</a></li>
+            <li><a href="work/fsu-design-production.html">FSU Design &amp; Production</a></li>
+            <li><a href="work/pr-and-events.html">PR &amp; Events</a></li>
+            <li><a href="work/fiberglass-production.html">Fiberglass Production</a></li>
+          </ul>
         </div>
       </section>
 
-
-      <section class="contact section" id="contact" aria-labelledby="contact-title">
-        <div class="frame">
-          <p class="lab" data-reveal>Contact us</p>
-
-          <div class="contact-grid">
-            <h2 class="display-l contact-title" id="contact-title" data-reveal>Have a project in mind? Talk to us.</h2>
-
-            <div class="contact-side" data-reveal>
-              <p>Based in Nairobi. We push boundaries through thinking not just about your brand, your product, or your marketing but how all of the elements of your business work together.</p>
-              <p>Through our best-in-class techniques and bespoke growth plans we assess business problems and put in place marketing strategies that lead to commercial success.</p>
-              <p>Block 10, ICD Business Park, Nairobi</p>
-              <p>
-                <strong>Phone</strong><br />
-                <a class="textlink" href="tel:+254722343279">+254 722 343279</a><br />
-                <a class="textlink" href="tel:+254734855593">+254 734 855593</a>
-              </p>
-              <div class="contact-social">
-                <p><strong>Follow us</strong></p>
-                <div class="contact-social-links">
-                  <a class="contact-social-link" href="https://ke.linkedin.com/company/advert-eyez-ltd" aria-label="Follow Advert Eyez on LinkedIn">
-                    <span class="contact-social-follow" aria-hidden="true">Follow ↗</span>
-                    <span class="contact-social-ball" aria-hidden="true">
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" focusable="false">
-                        <path d="M6.5 8.5h-4V22h4V8.5zm.3-4a2.3 2.3 0 1 0-4.6 0 2.3 2.3 0 0 0 4.6 0zm15.2 9.8c0-4-2.1-6.1-5-6.1-1.8 0-3.1.9-3.7 2V8.5H9.5V22h4v-7.2c0-1.9.8-3 2.4-3 1.5 0 2.1 1 2.1[...]
-                      </svg>
-                    </span>
-                  </a>
-                  <a class="contact-social-link contact-social-link--facebook" href="https://www.facebook.com/adverteyez/" aria-label="Follow Advert Eyez on Facebook">
-                    <span class="contact-social-follow" aria-hidden="true">Follow ↗</span>
-                    <span class="contact-social-ball" aria-hidden="true">
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" focusable="false">
-                        <path d="M14 22v-9h3l.5-3.5H14V7.3c0-1 .3-1.8 1.8-1.8h1.9V2.4c-.3 0-1.5-.2-2.8-.2-2.8 0-4.7 1.7-4.7 4.8v2.5H7V13h3.2v9H14z" />
-                      </svg>
-                    </span>
-                  </a>
-                  <a class="contact-social-link contact-social-link--youtube" href="https://www.youtube.com/channel/UCSRIzoY48PcYakY2hflSqqw" aria-label="Follow Advert Eyez on YouTube">
-                    <span class="contact-social-follow" aria-hidden="true">Follow ↗</span>
-                    <span class="contact-social-ball" aria-hidden="true">
-                      <svg width="27" height="27" viewBox="0 0 24 24" fill="currentColor" focusable="false">
-                        <path fill-rule="evenodd" d="M21.7 7.1a2.7 2.7 0 0 0-1.9-1.9C18.1 4.8 12 4.8 12 4.8s-6.1 0-7.8.4a2.7 2.7 0 0 0-1.9 1.9A28 28 0 0 0 2 12c0 1.6.1 3.3.3 4.9a2.7 2.7 0 0 0 1.9[...]
-                      </svg>
-                    </span>
-                  </a>
-                  <a class="contact-social-link contact-social-link--instagram" href="https://www.instagram.com/advert_eyez/" aria-label="Follow Advert Eyez on Instagram">
-                    <span class="contact-social-follow" aria-hidden="true">Follow ↗</span>
-                    <span class="contact-social-ball" aria-hidden="true">
-                      <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" focusable="false">
-                        <rect x="3" y="3" width="18" height="18" rx="5" />
-                        <circle cx="12" cy="12" r="4" />
-                        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-                      </svg>
-                    </span>
-                  </a>
-                  <a class="contact-social-link contact-social-link--x" href="https://x.com/adverteyez" aria-label="Follow Advert Eyez on X">
-                    <span class="contact-social-follow" aria-hidden="true">Follow ↗</span>
-                    <span class="contact-social-ball" aria-hidden="true">
-                      <svg width="23" height="23" viewBox="0 0 24 24" fill="currentColor" focusable="false">
-                        <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-7.4L5.5 22H2.3l7.3-8.4L1.9 2h6.4l4.4 6.7L18.9 2ZM17.8 20h1.7L7.4 3.9H5.6L17.8 20Z" />
-                      </svg>
-                    </span>
-                  </a>
-                </div>
-              </div>
-              <a class="contact-cta" href="https://api.whatsapp.com/send/?phone=254759013661&amp;text&amp;type=phone_number&amp;app_absent=0">Chat on WhatsApp</a>
-            </div>
-          </div>
-
-          <div class="contact-mail-row" data-reveal>
-            <span class="mono">Email</span>
-            <a class="contact-mail" href="mailto:info@adverteyez.com">
-              info@adverteyez.com<span class="contact-mail-arrow" aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
       <section class="clients" aria-labelledby="clients-title">
         <div class="frame clients-head">
           <h2 class="lab" id="clients-title">Brands we’ve worked with</h2>
@@ -380,49 +192,30 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="frame footer-meta">
-        <div class="footer-col footer-signal">
-          <a class="logotype logotype--footer" href="#top" aria-label="Advert Eyez — home"><img src="assets/ae-logo.webp" alt="" width="512" height="432" decoding="async" /></a>
-          <p>An independent advertising studio building brands that are seen, understood and remembered.</p>
-          <a class="footer-mail" href="mailto:info@adverteyez.com">info@adverteyez.com</a>
+    <footer class="ae-contact" id="contact" aria-labelledby="contact-heading">
+      <div class="ae-wrap">
+        <h2 class="ae-label" id="contact-heading">Contact</h2>
+        <a class="ae-mail" href="mailto:info@adverteyez.com">info@adverteyez.com</a>
+        <div class="ae-details">
+          <address>Block 10, ICD Business Park<br />Nairobi, Kenya</address>
+          <div class="ae-phones">
+            <a href="tel:+254722343279">+254 722 343279</a>
+            <a href="tel:+254734855593">+254 734 855593</a>
+          </div>
+          <a class="ae-whatsapp" href="https://wa.me/254759013661">Chat on WhatsApp</a>
         </div>
-
-        <div class="footer-col">
-          <p class="footer-title mono">Studio</p>
-          <a href="#studio">Studio</a>
+        <div class="ae-bottom">
+          <small>© <span id="year"></span> Advert Eyez</small>
+          <nav aria-label="Social media">
+            <a href="https://ke.linkedin.com/company/advert-eyez-ltd">LinkedIn</a>
+            <a href="https://www.facebook.com/adverteyez/">Facebook</a>
+            <a href="https://www.youtube.com/channel/UCSRIzoY48PcYakY2hflSqqw">YouTube</a>
+            <a href="https://www.instagram.com/advert_eyez/">Instagram</a>
+            <a href="https://x.com/adverteyez">X</a>
+          </nav>
         </div>
-
-        <div class="footer-col">
-          <p class="footer-title mono">Contact</p>
-          <a href="tel:+254722343279">+254 722 343279</a>
-          <a href="tel:+254734855593">+254 734 855593</a>
-        </div>
-
-        <div class="footer-col">
-          <p class="footer-title mono">Office</p>
-          <span>Block 10, ICD Business Park, Nairobi</span>
-        </div>
-      </div>
-
-      <div class="frame footer-base mono">
-        <span>© <span id="year"></span> Advert Eyez</span>
-        <span>Independent — Africa &amp; GCC</span>
       </div>
     </footer>
-
-    <a class="sayhi" href="#contact" aria-label="Say hi — start a project">
-      <svg class="sayhi-ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-        <defs>
-          <path id="sayhi-path" d="M50,50 m-39,0 a39,39 0 1,1 78,0 a39,39 0 1,1 -78,0" />
-        </defs>
-        <text>
-          <textPath href="#sayhi-path" startOffset="0">SAY HI · START A PROJECT · SAY HI · START A PROJECT ·</textPath>
-        </text>
-      </svg>
-      <span class="sayhi-arrow" aria-hidden="true">↗</span>
-    </a>
-
     <script src="script.js"></script>
   </body>
 </html>
