@@ -67,7 +67,7 @@ body { background: var(--paper); }
 .ae-gallery a:nth-child(2) span { border-color: #7061b6; }
 .ae-gallery a:nth-child(3) span { border-color: #2e94b6; }
 .home-page .clients[aria-labelledby] {
-  background: linear-gradient(105deg,#e0edff,#d5eef8 65%,#e8dcf8);
+  background: #fff;
 }
 .home-page .clients[aria-labelledby] .clients-head { border-color: #a3b5d0; }
 .project-next-section { color: white; background: linear-gradient(110deg,#101434,#28204e 70%,#173e58); }
