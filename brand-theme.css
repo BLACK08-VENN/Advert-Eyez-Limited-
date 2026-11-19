@@ -50,7 +50,7 @@ body { background: var(--paper); }
     radial-gradient(ellipse at 100% 36%, rgb(0 155 229 / 32%), transparent 40%);
 }
 .hero, .project-hero { border-bottom: 3px solid; border-image: linear-gradient(90deg,#ff872c,#f01c83 35%,#5732b4 64%,#08bfdc) 1; }
-.ae-intro, .project-example, .ae-contact, .project-footer {
+.project-example, .ae-contact, .project-footer {
   color: #fff;
   background-color: #050925;
   background-image: linear-gradient(90deg,rgb(4 7 29 / 92%) 8%,rgb(4 7 29 / 72%) 48%,rgb(4 7 29 / 20%) 83%), url("assets/brand-light.webp");
@@ -58,7 +58,7 @@ body { background: var(--paper); }
   background-position: center, center 58%;
 }
 .ae-intro .ae-split { border: 0; }
-.ae-intro .ae-label, .ae-contact .ae-label { color: #ffb66d; }
+.ae-contact .ae-label { color: #ffb66d; }
 .ae-services, main:has(.project-hero) > .section:not(.project-next-section) {
   background: linear-gradient(117deg,#f8e9f5 0%,#f6f1fc 42%,#dceff9 100%);
 }
@@ -77,20 +77,30 @@ body { background: var(--paper); }
 .ae-contact, .project-footer { background-position: center, center 70%; }
 .ae-details, .ae-bottom { border-color: rgb(242 222 255 / 40%); }
 @media (max-width: 700px) {
-  .ae-intro, .project-example, .ae-contact, .project-footer { background-size: cover; }
+  .project-example, .ae-contact, .project-footer { background-size: cover; }
 }
 
-.ae-intro {
-  position: relative;
-  isolation: isolate;
+.ae-intro { background: #fff; color: #211e24; }
+.ae-intro .ae-split {
+  display: block;
+  padding-block: clamp(3rem, 6vw, 6rem);
+  text-align: center;
 }
-.ae-intro::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: url("assets/studio-stripes.webp") center 45% / cover no-repeat;
-  opacity: .5;
+.ae-intro .ae-label {
+  font-size: .875rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
-.ae-intro .ae-split { text-shadow: 0 1px 5px rgb(4 7 29 / 85%); }
+.ae-intro .ae-label::after {
+  width: 2rem;
+  height: 1px;
+  margin: .8rem auto 1.3rem;
+  background: #a89078;
+}
+.ae-intro p {
+  max-width: 32ch;
+  margin-inline: auto;
+  font: 400 clamp(1.8rem, 3.6vw, 3.5rem)/1.15 Georgia, serif;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}

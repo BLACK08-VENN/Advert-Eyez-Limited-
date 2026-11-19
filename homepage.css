@@ -84,7 +84,7 @@
 
   .hero-frame.is-active {
     z-index: 1;
-    animation: hero-dissolve 1.35s ease-in-out both;
+    animation: hero-dissolve .35s ease-in-out both;
   }
 
   .hero-frame:nth-child(odd) { --drift-x: -.8%; }

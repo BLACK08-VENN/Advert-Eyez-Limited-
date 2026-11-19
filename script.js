@@ -5,8 +5,8 @@ if (heroReel) {
   const hero = document.querySelector('.hero');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  const IMAGE_HOLD = 4800;
-  const VIDEO_HOLD = 1200;
+  const IMAGE_HOLD = 1200;
+  const VIDEO_STALL_TIMEOUT = 10000;
   const VIDEO_RATE = 0.35;
 
   let index = 0;
@@ -39,11 +39,6 @@ if (heroReel) {
     const rate = Number(frame.dataset.rate);
     return rate > 0 ? rate : VIDEO_RATE;
   };
-  const holdOf = (frame) => {
-    const hold = Number(frame.dataset.hold);
-    return hold > 0 ? hold : kindOf(frame) === 'video' ? VIDEO_HOLD : IMAGE_HOLD;
-  };
-
   const playFrame = (frameIndex) => {
     const video = videoOf(frames[frameIndex]);
     if (!video) return;
@@ -51,7 +46,7 @@ if (heroReel) {
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
-    video.loop = true;
+    video.loop = frames.length === 1;
     video.playbackRate = rateOf(frames[frameIndex]);
 
     const playPromise = video.play();
@@ -99,11 +94,23 @@ if (heroReel) {
     const frame = frames[index];
     if (!frame) return;
 
-    timer = setTimeout(() => {
-      position = (position + 1) % playlist.length;
-      show(playlist[position]);
-      schedule();
-    }, holdOf(frame));
+    const video = videoOf(frame);
+    if (video && !video.error && !video.ended) {
+      const previousTime = video.currentTime;
+      timer = setTimeout(() => {
+        if (video.currentTime === previousTime) advance();
+        else schedule();
+      }, VIDEO_STALL_TIMEOUT);
+      return;
+    }
+    timer = setTimeout(advance, IMAGE_HOLD);
+  };
+
+  const advance = () => {
+    if (!running) return;
+    position = (position + 1) % playlist.length;
+    show(playlist[position]);
+    schedule();
   };
 
   const start = () => {
@@ -159,7 +166,10 @@ if (heroReel) {
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
-    video.loop = true;
+    video.loop = frames.length === 1;
+    video.addEventListener('ended', () => {
+      if (frame === frames[index]) advance();
+    });
     video.preload = 'auto';
     video.playbackRate = rateOf(frame);
 
